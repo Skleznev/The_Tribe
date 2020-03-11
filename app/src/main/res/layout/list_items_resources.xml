@@ -6,31 +6,32 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/positive_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        tools:text="+100"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/negative_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:background="@color/colorPrimary"
+        tools:text="(-50)" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/total_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        tools:text="300" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        tools:text="food" />
 
 </LinearLayout>
