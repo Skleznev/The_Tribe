@@ -8,6 +8,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+       android:paddingHorizontal="10dp"
+
         android:text="Племя" />
 
     <ProgressBar
@@ -15,6 +17,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
         android:layout_weight="1" />
 
     <TextView
@@ -22,5 +25,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingHorizontal="10dp"
         android:text="Торговля" />
 </LinearLayout>

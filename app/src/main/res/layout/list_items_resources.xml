@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textSize="20sp"
+        android:paddingHorizontal="10dp"
         tools:text="+100"/>
 
     <TextView
@@ -18,6 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/colorPrimary"
+        android:paddingHorizontal="10dp"
+        android:textSize="20sp"
+
+
         tools:text="(-50)" />
 
     <TextView
@@ -25,6 +31,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingHorizontal="10dp"
+        android:textSize="20sp"
+
         tools:text="300" />
 
     <TextView
@@ -32,6 +41,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:paddingHorizontal="10dp"
+        android:textSize="20sp"
+        android:text="Resource"
         tools:text="food" />
 
 </LinearLayout>

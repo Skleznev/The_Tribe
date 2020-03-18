@@ -77,6 +77,8 @@
             android:id="@+id/list_tribes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:dividerHeight="10dp"
+            android:divider="@android:color/transparent"
             android:layout_weight="1" />
     </LinearLayout>
 
