@@ -12,6 +12,8 @@ public class GameActivity extends AppCompatActivity {
     private Resource resource;
     private ResourceAdapter resourceAdapter;
     private WorkAdapter workAdapter;
+    private BuildAdapter buildAdapter;
+    private TribeAdapter tribeAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,12 +23,21 @@ public class GameActivity extends AppCompatActivity {
         resource = new Resource(gameRules.getGameDifficulty());
         resourceAdapter = new ResourceAdapter(this, resource);
         workAdapter= new WorkAdapter(this);
+        tribeAdapter = new TribeAdapter(this);
+        buildAdapter = new BuildAdapter(this);
         ListView listView = this.findViewById(R.id.list_resources);
         listView.setAdapter(resourceAdapter);
 
         GridView gridWork = this.findViewById(R.id.listCount);
         gridWork.setAdapter(workAdapter);
         gridWork.setNumColumns(workAdapter.getCount());
+
+        ListView tribe = this.findViewById(R.id.list_tribes);
+        tribe.setAdapter(tribeAdapter);
+
+        GridView gridBuilds = this.findViewById(R.id.grid_builds);
+        gridBuilds.setAdapter(buildAdapter);
+        gridBuilds.setNumColumns(3);
 
 
     }
