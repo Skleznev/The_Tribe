@@ -12,6 +12,8 @@ public class ResourceAdapter extends BaseAdapter {
     LayoutInflater lInflater;
     Resource resource;
 
+
+
     ResourceAdapter(Context context,Resource resource){
         this.context = context;
         this.resource = resource;
@@ -50,6 +52,8 @@ public class ResourceAdapter extends BaseAdapter {
             ((TextView) view.findViewById(R.id.negative_count)).setText(((Human)line).getBusy());
             ((TextView) view.findViewById(R.id.total_count)).setText(((Human)line).getTotal());
         }
+
+        ((TextView) view.findViewById(R.id.resource_name)).setText(String.valueOf(Resource.ResourceType.values()[position]));
 
         return view;
     }

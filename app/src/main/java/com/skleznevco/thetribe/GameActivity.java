@@ -14,15 +14,17 @@ public class GameActivity extends AppCompatActivity {
     private WorkAdapter workAdapter;
     private BuildAdapter buildAdapter;
     private TribeAdapter tribeAdapter;
+    private int[] workersCount;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        workersCount = new int[4];
         gameRules = new GameRules(GameRules.Difficulty.EASY);
         resource = new Resource(gameRules.getGameDifficulty());
         resourceAdapter = new ResourceAdapter(this, resource);
-        workAdapter= new WorkAdapter(this);
+        workAdapter= new WorkAdapter(this, workersCount, resourceAdapter, (Human) resource.getItem(Resource.ResourceType.WORKERS));
         tribeAdapter = new TribeAdapter(this);
         buildAdapter = new BuildAdapter(this);
         ListView listView = this.findViewById(R.id.list_resources);
@@ -41,4 +43,5 @@ public class GameActivity extends AppCompatActivity {
 
 
     }
+
 }

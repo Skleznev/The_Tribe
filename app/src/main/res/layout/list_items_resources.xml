@@ -37,13 +37,12 @@
         tools:text="300" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/resource_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingHorizontal="10dp"
         android:textSize="20sp"
-        android:text="Resource"
         tools:text="food" />
 
 </LinearLayout>

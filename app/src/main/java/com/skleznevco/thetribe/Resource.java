@@ -3,7 +3,7 @@ package com.skleznevco.thetribe;
 public class Resource {
 
     enum ResourceType{
-        FOOD,STONE,WOOD,GOLD,WORKING,MILITARY
+        FOOD,STONE,WOOD,GOLD, WORKERS,MILITARY
     }
 
 
@@ -11,7 +11,7 @@ public class Resource {
     private Item stone;
     private Item wood;
     private Item gold;
-    private Human working;
+    private Human workers;
     private Human military;
 
 
@@ -22,7 +22,7 @@ public class Resource {
                 stone = new Item(100);
                 wood = new Item(100);
                 gold = new Item(200);
-                working = new Human(10);
+                workers = new Human(10);
                 military = new Human(5);
                 break;
             case MEDIUM:
@@ -30,7 +30,7 @@ public class Resource {
                 stone = new Item(0);
                 wood = new Item(0);
                 gold = new Item(100);
-                working = new Human(5);
+                workers = new Human(5);
                 military = new Human(0);
                 break;
             case HARD:
@@ -38,7 +38,7 @@ public class Resource {
                 stone = new Item(0);
                 wood = new Item(0);
                 gold = new Item(0);
-                working = new Human(2);
+                workers = new Human(2);
                 military = new Human(0);
                 break;
         }
@@ -52,7 +52,7 @@ public class Resource {
             case STONE:return stone;
             case WOOD: return wood;
             case GOLD: return gold;
-            case WORKING: return working;
+            case WORKERS: return workers;
             case MILITARY: return military;
         }
         return null;
@@ -110,12 +110,22 @@ class Human{
         this.total = total;
     }
 
-    public void setBusy(int busy) {
-        this.busy = busy;
+    public boolean incrementBusy() {
+        if(busy < total){
+            busy++;
+            free--;
+            return true;
+        }
+        return false;
     }
 
-    public void setFree(int free) {
-        this.free = free;
+    public boolean incrementFree() {
+        if (free < total){
+            free++;
+            busy--;
+            return true;
+        }
+        return false;
     }
 
     public String getTotal() {
