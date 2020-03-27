@@ -3,28 +3,27 @@ package com.skleznevco.thetribe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 
 public class GameActivity extends AppCompatActivity {
     private GameRules gameRules;
-    private Resource resource;
     private ResourceAdapter resourceAdapter;
     private WorkAdapter workAdapter;
     private BuildAdapter buildAdapter;
     private TribeAdapter tribeAdapter;
-    private int[] workersCount;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        workersCount = new int[4];
         gameRules = new GameRules(GameRules.Difficulty.EASY);
-        resource = new Resource(gameRules.getGameDifficulty());
-        resourceAdapter = new ResourceAdapter(this, resource);
-        workAdapter= new WorkAdapter(this, workersCount, resourceAdapter, (Human) resource.getItem(Resource.ResourceType.WORKERS));
+
+        resourceAdapter = new ResourceAdapter(this);
+        workAdapter= new WorkAdapter(this, resourceAdapter);
         tribeAdapter = new TribeAdapter(this);
         buildAdapter = new BuildAdapter(this);
         ListView listView = this.findViewById(R.id.list_resources);
@@ -40,6 +39,15 @@ public class GameActivity extends AppCompatActivity {
         GridView gridBuilds = this.findViewById(R.id.grid_builds);
         gridBuilds.setAdapter(buildAdapter);
         gridBuilds.setNumColumns(3);
+
+        Button button_turn = findViewById(R.id.turn);
+        button_turn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GameRules.makeTurn();
+                resourceAdapter.notifyDataSetChanged();
+            }
+        });
 
 
     }

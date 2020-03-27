@@ -11,15 +11,13 @@ import android.widget.TextView;
 public class WorkAdapter extends BaseAdapter {
     Context context;
     LayoutInflater lInflater;
-    int[] workersCount;
     ResourceAdapter resourceAdapter;
-    Human worker;
+    Resource resource;
 
-    WorkAdapter(Context context, int[] workersCount, ResourceAdapter resourceAdapter, Human worker){
+    WorkAdapter(Context context, ResourceAdapter resourceAdapter){
         this.context = context;
-        this.workersCount = workersCount;
         this.resourceAdapter = resourceAdapter;
-        this.worker = worker;
+        resource = GameRules.getResource();
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -53,10 +51,10 @@ public class WorkAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                if (worker.incrementBusy()) {
-                    workersCount[position]++;
+                if (resource.getHuman(Resource.ResourceType.WORKERS).incrementBusy()) {
+                    resource.getItem(Resource.ResourceType.values()[position]).incrementCountWorkers();
                     text_count.setText(convertToString(position));
-                    resourceAdapter.notifyDataSetChanged();
+                    resourceAdapter.update();
                 }
             }
         });
@@ -64,9 +62,10 @@ public class WorkAdapter extends BaseAdapter {
         btn_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(workersCount[position] != 0 && worker.incrementFree()){
-                    workersCount[position]--;
-                    resourceAdapter.notifyDataSetChanged();
+                if(resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers() != 0 &&
+                        resource.getHuman(Resource.ResourceType.WORKERS).incrementFree()){
+                    resource.getItem(Resource.ResourceType.values()[position]).decrementCountWorkers();
+                    resourceAdapter.update();
                 }
                 text_count.setText(convertToString(position));
             }
@@ -76,7 +75,7 @@ public class WorkAdapter extends BaseAdapter {
 
     private String convertToString(int position){
         String s = "0";
-        int count = workersCount[position];
+        int count = resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers();
 
         if (count < 10){
             return s.concat(String.valueOf(count));

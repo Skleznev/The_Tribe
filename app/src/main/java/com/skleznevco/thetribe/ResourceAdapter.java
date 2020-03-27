@@ -14,10 +14,10 @@ public class ResourceAdapter extends BaseAdapter {
 
 
 
-    ResourceAdapter(Context context,Resource resource){
+    ResourceAdapter(Context context){
         this.context = context;
-        this.resource = resource;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        resource = GameRules.getResource();
     }
 
     @Override
@@ -27,9 +27,12 @@ public class ResourceAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int type) {
-        return resource.getItem(Resource.ResourceType.values()[type]);
-    }
+        if (type < 4) {
+            return resource.getItem(Resource.ResourceType.values()[type]);
+        }
 
+        return resource.getHuman(Resource.ResourceType.values()[type]);
+    }
     @Override
     public long getItemId(int position) {
         return position;
@@ -58,4 +61,8 @@ public class ResourceAdapter extends BaseAdapter {
         return view;
     }
 
+    public void update() {
+        resource=GameRules.getResource();
+        notifyDataSetChanged();
+    }
 }

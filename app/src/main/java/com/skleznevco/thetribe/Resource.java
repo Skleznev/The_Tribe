@@ -11,6 +11,7 @@ public class Resource {
     private Item stone;
     private Item wood;
     private Item gold;
+
     private Human workers;
     private Human military;
 
@@ -46,12 +47,18 @@ public class Resource {
     }
 
 
-    public Object getItem(ResourceType type) {
+    public Item getItem(ResourceType type) {
         switch (type){
             case FOOD: return food;
             case STONE:return stone;
             case WOOD: return wood;
             case GOLD: return gold;
+
+        }
+        return null;
+    }
+    public Human getHuman(ResourceType type){
+        switch (type){
             case WORKERS: return workers;
             case MILITARY: return military;
         }
@@ -65,6 +72,7 @@ class Item{
     private int positive;
     private int negative;
     private int total;
+    private int countWorkers;
 
     Item(int total){
         this.total = total;
@@ -74,8 +82,8 @@ class Item{
         this.negative = negative;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void calculateTotal() {
+        this.total += positive - negative;
     }
 
     public void setPositive(int positive) {
@@ -94,6 +102,19 @@ class Item{
         return String.valueOf(total);
     }
 
+    public int getCountWorkers() {
+        return countWorkers;
+    }
+
+    public void setCountWorkers(int countWorkers) {
+        this.countWorkers = countWorkers;
+    }
+    public void incrementCountWorkers() {
+        countWorkers ++;
+    }
+    public void decrementCountWorkers() {
+        countWorkers --;
+    }
 }
 
 class Human{
