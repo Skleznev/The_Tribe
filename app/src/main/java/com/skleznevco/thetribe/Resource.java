@@ -64,7 +64,9 @@ public class Resource {
         }
         return null;
     }
-
+    public int getPopulation(){
+        return Integer.parseInt(workers.getTotal())+Integer.parseInt(military.getTotal());
+    }
 
 }
 

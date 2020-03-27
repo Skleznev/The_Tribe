@@ -27,18 +27,35 @@ public class GameRules {
     }
     static public Resource getResource(){
         for(Resource.ResourceType type : Resource.ResourceType.values()){
-            if(type.ordinal()<4)
-            resource.getItem(type).setPositive(calculate(type));
+            if(type.ordinal()<4) {
+                resource.getItem(type).setPositive(calculatePositive(type));
+                resource.getItem(type).setNegative(calculateNegative(type));
+            }
         }
 
         return resource;
     }
 
-    private static int calculate(Resource.ResourceType type) {
+    private static int calculatePositive(Resource.ResourceType type) {
         int count = resource.getItem(type).getCountWorkers();
 
         int coef = 50;
         return  count* coef;
+    }
+
+    private static int calculateNegative(Resource.ResourceType type) {
+        switch (type){
+            case FOOD:{
+                int coef = 20;
+                return coef*resource.getPopulation();
+            }
+            case GOLD:{
+                int coef = 20;
+                return coef *Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal());
+            }
+        }
+        return 0;
+
     }
 
 
