@@ -2,6 +2,8 @@ package com.skleznevco.thetribe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -44,12 +46,12 @@ public class GameActivity extends AppCompatActivity {
         button_turn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameRules.makeTurn();
+
+
+
                 resourceAdapter.notifyDataSetChanged();
             }
         });
-
-
     }
 
 }

@@ -1,5 +1,8 @@
 package com.skleznevco.thetribe;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class WorkAdapter extends BaseAdapter {
     Context context;
@@ -18,7 +26,7 @@ public class WorkAdapter extends BaseAdapter {
         this.context = context;
         this.resourceAdapter = resourceAdapter;
         resource = GameRules.getResource();
-        lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        lInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -47,6 +55,16 @@ public class WorkAdapter extends BaseAdapter {
         Button btn_down = view.findViewById(R.id.count_down);
         final TextView text_count = view.findViewById(R.id.count);
 
+        text_count.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, text_count);
+                changeCountDialog.setMaxSeek(resource.getHuman(Resource.ResourceType.WORKERS).getFree());
+                changeCountDialog.show();
+            }
+        });
+
+
         btn_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +73,7 @@ public class WorkAdapter extends BaseAdapter {
                     resource.getItem(Resource.ResourceType.values()[position]).incrementCountWorkers();
                     text_count.setText(convertToString(position));
                     resourceAdapter.update();
+
                 }
             }
         });

@@ -40,7 +40,7 @@ public class ResourceAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
+            View view = convertView;
         if (view == null) {
             view = lInflater.inflate(R.layout.list_items_resources, parent, false);
         }
