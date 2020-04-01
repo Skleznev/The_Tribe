@@ -9,12 +9,14 @@ public class GameRules {
     }
     private Difficulty gameDifficulty;
     static private Resource resource;
+    static private Builds builds;
 
 
 
     public GameRules(Difficulty gameDifficulty ){
     this.gameDifficulty = gameDifficulty;
         resource = new Resource(getGameDifficulty());
+        builds = new Builds(getGameDifficulty());
     }
 
     public void setGameDifficulty(Difficulty gameDifficulty) {
@@ -34,6 +36,10 @@ public class GameRules {
         }
 
         return resource;
+    }
+
+    static public Builds getBuilds(){
+        return builds;
     }
 
     private static int calculatePositive(Resource.ResourceType type) {
