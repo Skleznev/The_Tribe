@@ -23,7 +23,6 @@ public class Builds {
     private Building embassy;
 
     public Builds(GameRules.Difficulty difficulty){
-        townHall.setLevel(1);
         switch (difficulty){
             case EASY:
 
@@ -62,6 +61,11 @@ class Building{
     private int costUpgrade;
     private int costService;
 
+    Building(int level, int costUpgrade, int costService){
+        this.level = level;
+
+    }
+
     public void levelUp(){
         if (level<3)
         level++;
@@ -88,7 +92,4 @@ class Building{
         this.costUpgrade = costUpgrade;
     }
 
-    void setLevel(int level) {
-        this.level = level;
-    }
 }
