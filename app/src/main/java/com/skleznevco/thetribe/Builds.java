@@ -25,7 +25,15 @@ public class Builds {
     public Builds(GameRules.Difficulty difficulty){
         switch (difficulty){
             case EASY:
-
+                townHall = new Building(2,false);
+                barracks = new Building(1 ,false);
+                jail = new Building(1,false);
+                fair = new Building(0,false);
+                church = new Building(0, false);
+                tower = new Building (1,false);
+                power = new Building(1,false);
+                theatre = new Building(0, false);
+                embassy = new Building(0, false);
                 break;
             case MEDIUM:
 
@@ -58,10 +66,22 @@ public class Builds {
 
 class Building{
     private int level = 0;
-    private int costUpgrade;
-    private int costService;
+    private Payment costUpgrade;
+    private Payment costService;
 
-    Building(int level, int costUpgrade, int costService){
+    Building(int level, boolean random){
+        this.level = level;
+        if (random){
+
+        }
+        else {
+            costService = new Payment(1,1,1,1);
+            costUpgrade = new Payment(2,2,2,2);
+        }
+
+    }
+
+    Building(int level, Payment costUpgrade, Payment costService){
         this.level = level;
 
     }
@@ -76,20 +96,12 @@ class Building{
     }
 
 
-    public int getCostService() {
+    public Payment getCostService() {
         return costService;
     }
 
-    public int getCostUpgrade() {
+    public Payment getCostUpgrade() {
         return costUpgrade;
-    }
-
-    public void setCostService(int costService) {
-        this.costService = costService;
-    }
-
-    public void setCostUpgrade(int costUpgrade) {
-        this.costUpgrade = costUpgrade;
     }
 
 }

@@ -1,8 +1,5 @@
 package com.skleznevco.thetribe;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import com.skleznevco.thetribe.Dialog.ChangeCountDialog;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 

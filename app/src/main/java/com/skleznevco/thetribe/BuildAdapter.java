@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.skleznevco.thetribe.Dialog.BuildingDialog;
+import com.skleznevco.thetribe.Dialog.ChangeCountDialog;
+
 public class BuildAdapter extends BaseAdapter {
     Context context;
     LayoutInflater lInflater;
@@ -36,6 +39,15 @@ public class BuildAdapter extends BaseAdapter {
         if (view == null) {
             view = lInflater.inflate(R.layout.list_items_builds, parent, false);
         }
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BuildingDialog buildingDialog = new BuildingDialog(v.getContext());
+                buildingDialog.show();
+            }
+        });
+
         return view;
     }
 }
