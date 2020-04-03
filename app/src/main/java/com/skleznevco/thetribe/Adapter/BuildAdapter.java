@@ -1,5 +1,6 @@
 package com.skleznevco.thetribe.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.BaseAdapter;
 import com.skleznevco.thetribe.Building;
 import com.skleznevco.thetribe.Builds;
 import com.skleznevco.thetribe.Dialog.BuildingDialog;
-import com.skleznevco.thetribe.Dialog.ChangeCountDialog;
 import com.skleznevco.thetribe.GameRules;
 import com.skleznevco.thetribe.R;
 
@@ -33,7 +33,7 @@ public class BuildAdapter extends BaseAdapter {
     @Override
     public Building getItem(int position)
     {
-        return builds.getItem(Builds.BuildingType.values()[position]);
+        return builds.getBuilding(Builds.BuildingType.values()[position]);
     }
 
     @Override
@@ -48,14 +48,30 @@ public class BuildAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.list_items_builds, parent, false);
         }
 
+        final Building building = getItem(position);
+
+        setLevel(view,building.getLevel());
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BuildingDialog buildingDialog = new BuildingDialog(v.getContext(), getItem(position));
+                BuildingDialog buildingDialog = new BuildingDialog(v.getContext(), building);
                 buildingDialog.show();
             }
         });
 
         return view;
+    }
+
+    private void setLevel(View view,int level) {
+        switch (level) {
+            case 3:
+                (view.findViewById(R.id.level_3)).setVisibility(View.VISIBLE);
+            case 2:
+                (view.findViewById(R.id.level_2)).setVisibility(View.VISIBLE);
+            case 1:
+                (view.findViewById(R.id.level_1)).setVisibility(View.VISIBLE);
+        }
+
     }
 }

@@ -46,7 +46,7 @@ public class BuildingDialogAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.item_buid_dialog, parent, false);
         }
         TextView textView = view.findViewById(R.id.build_cost);
-        textView.setText(building.getCostUpgrade().toString());
+        textView.setText(building.getCostUpgrade(position).toString());
 
         return  view;
     }

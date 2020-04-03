@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -21,9 +22,9 @@ public class BuildingDialog extends Dialog {
 
         View layout = inflater.inflate(R.layout.builds_dialog, null);
 
-
         BuildingDialogAdapter adapter = new BuildingDialogAdapter(context, building);
-
+        TextView textView = layout.findViewById(R.id.build_name);
+        textView.setText(building.getName());
         GridView gridView = layout.findViewById(R.id.dialog_grid_builds);
         gridView.setAdapter(adapter);
         setContentView(layout);

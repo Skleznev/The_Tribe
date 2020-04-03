@@ -25,15 +25,15 @@ public class Builds {
     public Builds(GameRules.Difficulty difficulty){
         switch (difficulty){
             case EASY:
-                townHall = new Building(2,false);
-                barracks = new Building(1 ,false);
-                jail = new Building(1,false);
-                fair = new Building(0,false);
-                church = new Building(0, false);
-                tower = new Building (1,false);
-                power = new Building(1,false);
-                theatre = new Building(0, false);
-                embassy = new Building(0, false);
+                townHall = new Building(2,false, "Ратуша");
+                barracks = new Building(1 ,false, "Казарма");
+                jail = new Building(1,false, "Тюрьма");
+                fair = new Building(0,false, "Рынок");
+                church = new Building(0, false, "Храм");
+                tower = new Building (1,false, "Смотрительная башня");
+                power = new Building(1,false, " Усиление");
+                theatre = new Building(0, false, "Амфитеатр");
+                embassy = new Building(0, false, "Посольство");
                 break;
             case MEDIUM:
 
@@ -45,7 +45,7 @@ public class Builds {
     }
 
 
-    public Building getItem(BuildingType type) {
+    public Building getBuilding(BuildingType type) {
         switch (type){
             case TOWN_HALL: return townHall;
             case BARRACKS: return barracks;
@@ -59,7 +59,6 @@ public class Builds {
         }
         return null;
     }
-
 
 
 }

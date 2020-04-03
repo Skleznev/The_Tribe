@@ -4,9 +4,11 @@ public class Building{
     private int level = 0;
     private Payment costUpgrade;
     private Payment costService;
+    private String name;
 
-    Building(int level, boolean random){
+    Building(int level, boolean random, String name){
         this.level = level;
+        this.name = name;
         if (random){
 
         }
@@ -33,12 +35,16 @@ public class Building{
 
 
     public Payment getCostService() {
+
         return costService;
     }
 
-    public Payment getCostUpgrade() {
-        return costUpgrade;
+    public Payment getCostUpgrade(int coefficient) {
+        return costUpgrade.multiply(coefficient+1);
     }
 
+    public String getName() {
+        return name;
+    }
 }
 

@@ -26,4 +26,9 @@ public class Payment {
 
         return text;
     }
+
+
+    public Payment multiply(int coef) {
+        return new Payment(food*coef,stone*coef, wood*coef,gold*coef);
+    }
 }

@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dialog_grid_builds"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:numColumns="3">
+    android:orientation="vertical">
 
-</GridView>
+    <TextView
+        android:id="@+id/build_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="Name" />
+
+    <GridView
+        android:id="@+id/dialog_grid_builds"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3">
+
+    </GridView>
+
+</LinearLayout>
