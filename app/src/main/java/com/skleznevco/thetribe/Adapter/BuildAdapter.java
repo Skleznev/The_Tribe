@@ -1,4 +1,4 @@
-package com.skleznevco.thetribe;
+package com.skleznevco.thetribe.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,16 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.skleznevco.thetribe.Building;
+import com.skleznevco.thetribe.Builds;
 import com.skleznevco.thetribe.Dialog.BuildingDialog;
 import com.skleznevco.thetribe.Dialog.ChangeCountDialog;
+import com.skleznevco.thetribe.GameRules;
+import com.skleznevco.thetribe.R;
 
 public class BuildAdapter extends BaseAdapter {
     Context context;
     LayoutInflater lInflater;
+    Builds builds;
 
-    BuildAdapter(Context context){
+
+    public BuildAdapter(Context context){
         this.context = context;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        builds = GameRules.getBuilds();
     }
 
     @Override
@@ -24,8 +31,9 @@ public class BuildAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public Building getItem(int position)
+    {
+        return builds.getItem(Builds.BuildingType.values()[position]);
     }
 
     @Override
@@ -34,7 +42,7 @@ public class BuildAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
             view = lInflater.inflate(R.layout.list_items_builds, parent, false);
@@ -43,7 +51,7 @@ public class BuildAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BuildingDialog buildingDialog = new BuildingDialog(v.getContext());
+                BuildingDialog buildingDialog = new BuildingDialog(v.getContext(), getItem(position));
                 buildingDialog.show();
             }
         });

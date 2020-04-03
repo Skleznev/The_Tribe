@@ -1,4 +1,4 @@
-package com.skleznevco.thetribe;
+package com.skleznevco.thetribe.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.skleznevco.thetribe.GameRules;
+import com.skleznevco.thetribe.Human;
+import com.skleznevco.thetribe.Item;
+import com.skleznevco.thetribe.R;
+import com.skleznevco.thetribe.Resource;
+
 public class ResourceAdapter extends BaseAdapter {
     Context context;
     LayoutInflater lInflater;
@@ -14,7 +20,7 @@ public class ResourceAdapter extends BaseAdapter {
 
 
 
-    ResourceAdapter(Context context){
+    public ResourceAdapter(Context context){
         this.context = context;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         resource = GameRules.getResource();

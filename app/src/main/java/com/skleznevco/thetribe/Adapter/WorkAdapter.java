@@ -1,4 +1,4 @@
-package com.skleznevco.thetribe;
+package com.skleznevco.thetribe.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.skleznevco.thetribe.Dialog.ChangeCountDialog;
+import com.skleznevco.thetribe.GameRules;
+import com.skleznevco.thetribe.R;
+import com.skleznevco.thetribe.Resource;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -18,7 +21,7 @@ public class WorkAdapter extends BaseAdapter {
     ResourceAdapter resourceAdapter;
     Resource resource;
 
-    WorkAdapter(Context context, ResourceAdapter resourceAdapter){
+    public WorkAdapter(Context context, ResourceAdapter resourceAdapter){
         this.context = context;
         this.resourceAdapter = resourceAdapter;
         resource = GameRules.getResource();

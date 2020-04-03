@@ -2,7 +2,7 @@ package com.skleznevco.thetribe;
 
 public class Resource {
 
-    enum ResourceType{
+   public enum ResourceType{
         FOOD,STONE,WOOD,GOLD, WORKERS,MILITARY
     }
 
@@ -70,96 +70,3 @@ public class Resource {
 
 }
 
-class Item{
-    private int positive;
-    private int negative;
-    private int total;
-    private int countWorkers;
-
-    Item(int total){
-        this.total = total;
-    }
-
-    public void setNegative(int negative) {
-        this.negative = negative;
-    }
-
-    public void calculateTotal() {
-        this.total += positive - negative;
-    }
-
-    public void setPositive(int positive) {
-        this.positive = positive;
-    }
-
-    public String getNegative() {
-        return String.valueOf(negative);
-    }
-
-    public String getPositive() {
-        return String.valueOf(positive);
-    }
-
-    public String getTotal() {
-        return String.valueOf(total);
-    }
-
-    public int getCountWorkers() {
-        return countWorkers;
-    }
-
-    public void setCountWorkers(int countWorkers) {
-        this.countWorkers = countWorkers;
-    }
-    public void incrementCountWorkers() {
-        countWorkers ++;
-    }
-    public void decrementCountWorkers() {
-        countWorkers --;
-    }
-}
-
-class Human{
-    private int busy;
-    private int free;
-    private int total;
-
-    public Human(int total){
-        this.total = total;
-        this.free = total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
-    public boolean incrementBusy() {
-        if(busy < total){
-            busy++;
-            free--;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean incrementFree() {
-        if (free < total){
-            free++;
-            busy--;
-            return true;
-        }
-        return false;
-    }
-
-    public String getTotal() {
-        return String.valueOf(total);
-    }
-
-    public String getBusy() {
-        return String.valueOf(busy);
-    }
-
-    public String getFree() {
-        return String.valueOf(free);
-    }
-}

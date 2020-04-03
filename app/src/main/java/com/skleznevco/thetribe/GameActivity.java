@@ -8,6 +8,11 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 
+import com.skleznevco.thetribe.Adapter.BuildAdapter;
+import com.skleznevco.thetribe.Adapter.ResourceAdapter;
+import com.skleznevco.thetribe.Adapter.TribeAdapter;
+import com.skleznevco.thetribe.Adapter.WorkAdapter;
+
 
 public class GameActivity extends AppCompatActivity {
     private GameRules gameRules;
