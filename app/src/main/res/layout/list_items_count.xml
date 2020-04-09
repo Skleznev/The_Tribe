@@ -8,14 +8,14 @@
         android:id="@+id/count_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:text="↑" />
 
     <TextView
         android:id="@+id/count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:gravity="center"
         android:text="00" />
 
@@ -23,6 +23,6 @@
         android:id="@+id/count_down"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:text="↓" />
 </LinearLayout>

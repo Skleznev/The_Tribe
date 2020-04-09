@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import com.skleznevco.thetribe.Building;
 import com.skleznevco.thetribe.Builds;
@@ -17,6 +18,7 @@ public class BuildAdapter extends BaseAdapter {
     Context context;
     LayoutInflater lInflater;
     Builds builds;
+    ImageView imageBuild;
 
 
     public BuildAdapter(Context context){
@@ -59,6 +61,9 @@ public class BuildAdapter extends BaseAdapter {
                 buildingDialog.show();
             }
         });
+
+        imageBuild = view.findViewById(R.id.imageBuild);
+        imageBuild.setImageDrawable(context.getResources().getDrawable((getItem(position)).getImg()));
 
         return view;
     }

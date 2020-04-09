@@ -14,8 +14,8 @@
 
         <GridView
             android:id="@+id/listCount"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1">
 
         </GridView>
@@ -45,8 +45,8 @@
 
         <ListView
             android:id="@+id/list_resources"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
 
 
@@ -61,7 +61,7 @@
         android:progress="65" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
@@ -69,7 +69,7 @@
         <GridView
             android:id="@+id/grid_builds"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1">
 
         </GridView>
@@ -77,7 +77,7 @@
         <ListView
             android:id="@+id/list_tribes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:dividerHeight="10dp"
             android:divider="@android:color/transparent"
             android:layout_weight="1" />

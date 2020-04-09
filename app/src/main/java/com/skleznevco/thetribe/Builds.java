@@ -25,15 +25,15 @@ public class Builds {
     public Builds(GameRules.Difficulty difficulty){
         switch (difficulty){
             case EASY:
-                townHall = new Building(2,false, "Ратуша");
-                barracks = new Building(1 ,false, "Казарма");
-                jail = new Building(1,false, "Тюрьма");
-                fair = new Building(0,false, "Рынок");
-                church = new Building(0, false, "Храм");
-                tower = new Building (1,false, "Смотрительная башня");
-                power = new Building(1,false, " Усиление");
-                theatre = new Building(0, false, "Амфитеатр");
-                embassy = new Building(0, false, "Посольство");
+                townHall = new Building(2,false, BuildingType.TOWN_HALL);
+                barracks = new Building(1 ,false, BuildingType.BARRACKS);
+                jail = new Building(1,false, BuildingType.JAIL);
+                fair = new Building(0,false, BuildingType.FAIR);
+                church = new Building(0, false, BuildingType.CHURCH);
+                tower = new Building (1,false, BuildingType.TOWER);
+                power = new Building(1,false, BuildingType.POWER);
+                theatre = new Building(0, false, BuildingType.THEATRE);
+                embassy = new Building(0, false, BuildingType.EMBASSY);
                 break;
             case MEDIUM:
 
