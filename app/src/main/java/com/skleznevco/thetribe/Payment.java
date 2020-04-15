@@ -31,4 +31,14 @@ public class Payment {
     public Payment multiply(int coef) {
         return new Payment(food*coef,stone*coef, wood*coef,gold*coef);
     }
+
+    public int getItemCount(Resource.ResourceType type) {
+        switch (type){
+            case FOOD: return food;
+            case STONE:return stone;
+            case WOOD: return wood;
+            case GOLD: return gold;
+        }
+        return 0;
+    }
 }

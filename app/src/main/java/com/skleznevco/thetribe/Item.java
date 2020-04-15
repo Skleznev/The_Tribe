@@ -13,6 +13,9 @@ public class Item{
     public void setNegative(int negative) {
         this.negative = negative;
     }
+    public void addNegative(int negative) {
+        this.negative+= negative;
+    }
 
     public void calculateTotal() {
         this.total += positive - negative;
@@ -32,6 +35,10 @@ public class Item{
 
     public String getTotal() {
         return String.valueOf(total);
+    }
+
+    public int getTotalInt() {
+        return total;
     }
 
     public int getCountWorkers() {

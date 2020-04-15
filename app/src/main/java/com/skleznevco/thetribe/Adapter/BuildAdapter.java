@@ -29,13 +29,13 @@ public class BuildAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 9;
+        return 8;
     }
 
     @Override
-    public Building getItem(int position)
+    public Builds.BuildingType getItem(int position)
     {
-        return builds.getBuilding(Builds.BuildingType.values()[position]);
+        return Builds.BuildingType.values()[position];
     }
 
     @Override
@@ -50,20 +50,20 @@ public class BuildAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.list_items_builds, parent, false);
         }
 
-        final Building building = getItem(position);
+        final Building building = builds.getBuilding(getItem(position));
 
         setLevel(view,building.getLevel());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BuildingDialog buildingDialog = new BuildingDialog(v.getContext(), building);
+                BuildingDialog buildingDialog = new BuildingDialog(v.getContext(), getItem(position));
                 buildingDialog.show();
             }
         });
 
         imageBuild = view.findViewById(R.id.imageBuild);
-        imageBuild.setImageDrawable(context.getResources().getDrawable((getItem(position)).getImg()));
+        imageBuild.setImageDrawable(context.getResources().getDrawable(building.getImg()));
 
         return view;
     }

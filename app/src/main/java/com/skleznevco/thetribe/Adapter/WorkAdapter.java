@@ -12,18 +12,19 @@ import com.skleznevco.thetribe.Dialog.ChangeCountDialog;
 import com.skleznevco.thetribe.GameRules;
 import com.skleznevco.thetribe.R;
 import com.skleznevco.thetribe.Resource;
+import com.skleznevco.thetribe.ResourceInterface;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class WorkAdapter extends BaseAdapter {
     Context context;
     LayoutInflater lInflater;
-    ResourceAdapter resourceAdapter;
+    ResourceInterface resourceInterface;
     Resource resource;
 
-    public WorkAdapter(Context context, ResourceAdapter resourceAdapter){
+    public WorkAdapter(Context context, ResourceInterface resourceInterface){
         this.context = context;
-        this.resourceAdapter = resourceAdapter;
+        this.resourceInterface = resourceInterface;
         resource = GameRules.getResource();
         lInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
     }
@@ -57,7 +58,7 @@ public class WorkAdapter extends BaseAdapter {
         text_count.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, text_count);
+                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface);
                 changeCountDialog.setMaxSeek(resource.getHuman(Resource.ResourceType.WORKERS).getFree());
                 changeCountDialog.show();
             }
@@ -71,7 +72,7 @@ public class WorkAdapter extends BaseAdapter {
                 if (resource.getHuman(Resource.ResourceType.WORKERS).incrementBusy()) {
                     resource.getItem(Resource.ResourceType.values()[position]).incrementCountWorkers();
                     text_count.setText(convertToString(position));
-                    resourceAdapter.update();
+                    resourceInterface.update();
 
                 }
             }
@@ -80,10 +81,9 @@ public class WorkAdapter extends BaseAdapter {
         btn_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers() != 0 &&
-                        resource.getHuman(Resource.ResourceType.WORKERS).incrementFree()){
+                if(resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers() != 0 && resource.getHuman(Resource.ResourceType.WORKERS).incrementFree()){
                     resource.getItem(Resource.ResourceType.values()[position]).decrementCountWorkers();
-                    resourceAdapter.update();
+                    resourceInterface.update();
                 }
                 text_count.setText(convertToString(position));
             }
@@ -101,4 +101,10 @@ public class WorkAdapter extends BaseAdapter {
 
         return String.valueOf(count);
     }
+
+    private interface WorkInterface{
+        void update(ResourceInterface resourceInterface);
+        void setContWorkers(int count);
+    }
+
 }

@@ -19,7 +19,6 @@ public class ResourceAdapter extends BaseAdapter {
     Resource resource;
 
 
-
     public ResourceAdapter(Context context){
         this.context = context;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

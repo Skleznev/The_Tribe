@@ -14,7 +14,7 @@ public class Building {
 
         } else {
             costService = new Payment(1, 1, 1, 1);
-            costUpgrade = new Payment(2, 2, 2, 2);
+            costUpgrade = new Payment(20, 10, 15, 5);
         }
 
     }
@@ -65,7 +65,7 @@ public class Building {
     }
 
     public void levelUp() {
-        if (level < 3)
+            GameRules.pay(getCostUpgrade(level));
             level++;
     }
 

@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.skleznevco.thetribe.Building;
+import com.skleznevco.thetribe.Builds;
+import com.skleznevco.thetribe.GameRules;
 import com.skleznevco.thetribe.R;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
@@ -18,10 +20,10 @@ public class BuildingDialogAdapter extends BaseAdapter {
     LayoutInflater lInflater;
     Building building;
 
-    public BuildingDialogAdapter(Context context, Building building){
+    public BuildingDialogAdapter(Context context, Builds.BuildingType type){
         this.context = context;
         lInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-        this.building = building;
+        this.building = GameRules.getBuilds().getBuilding(type);
     }
 
     @Override

@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.skleznevco.thetribe.R;
+import com.skleznevco.thetribe.ResourceInterface;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -30,12 +31,14 @@ public class ChangeCountDialog extends Dialog {
     Button button_ok;
     Button button_cancel;
     String count;
+    ResourceInterface resourceInterface;
 
 
 
-    public ChangeCountDialog(@NonNull Context context, TextView target) {
+    public ChangeCountDialog(@NonNull Context context, ResourceInterface resourceInterface) {
         super(context);
         this.target = target;
+        this.resourceInterface = resourceInterface;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.fragment_defence_military, null);
         setContentView(layout);
@@ -53,11 +56,11 @@ private void initialView(){
     button_ok.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (count.length()<2){
-                target.setText("0".concat(count));
-            }
-            else target.setText(count);
-
+//            if (count.length()<2){
+//                target.setText("0".concat(count));
+//            }
+//            else target.setText(count);
+            resourceInterface.update();
 
             cancel();
         }

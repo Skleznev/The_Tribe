@@ -20,4 +20,13 @@
 
     </GridView>
 
+    <Button
+        android:id="@+id/upgrade"
+        android:text="Построить"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </Button>
+
 </LinearLayout>
