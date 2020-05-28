@@ -12,6 +12,12 @@
         android:gravity="center"
         tools:text="Name" />
 
+    <LinearLayout
+        android:id="@+id/empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"></LinearLayout>
+
     <GridView
         android:id="@+id/dialog_grid_builds"
         android:layout_width="match_parent"
