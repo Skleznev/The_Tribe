@@ -2,8 +2,10 @@ package com.skleznevco.thetribe.Dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -43,9 +45,30 @@ public class BuildingDialog extends Dialog {
             }
         });
 
+        switch (type){
+            case FAIR:
+                break;
+            case JAIL:
+                break;
+            case POWER:
+                break;
+            case TOWER:
+                break;
+            case CHURCH:
+                break;
+            case EMBASSY:
+                break;
+            case THEATRE:
+                break;
+            case BARRACKS:
+                break;
+            case TOWN_HALL:
+                break;
+        }
 
-        LinearLayout emptyLayout = layout.findViewById(R.id.empty_layout);
-        emptyLayout.addView(new SeekBar(layout.getContext()));
+
+
+
 
         setContentView(layout);
 
