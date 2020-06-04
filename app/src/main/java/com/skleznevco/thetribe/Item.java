@@ -54,4 +54,16 @@ public class Item{
     public void decrementCountWorkers() {
         countWorkers --;
     }
+
+    public void addPositive(int parseInt) {
+        this.positive+=parseInt;
+    }
+
+    public void minusTotal(int parseInt) {
+        total-=parseInt;
+    }
+
+    public void addTotal(int parseInt) {
+        total+=parseInt;
+    }
 }

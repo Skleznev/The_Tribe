@@ -28,7 +28,7 @@ public class Builds {
                 townHall = new Building(2,false, BuildingType.TOWN_HALL);
                 barracks = new Building(1 ,false, BuildingType.BARRACKS);
                 jail = new Building(1,false, BuildingType.JAIL);
-                fair = new Building(0,false, BuildingType.FAIR);
+                fair = new Building(1,false, BuildingType.FAIR);
                 church = new Building(0, false, BuildingType.CHURCH);
                 tower = new Building (1,false, BuildingType.TOWER);
                 power = new Building(1,false, BuildingType.POWER);

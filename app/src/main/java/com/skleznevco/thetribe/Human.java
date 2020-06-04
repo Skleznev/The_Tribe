@@ -43,4 +43,14 @@ public class Human{
     public String getFree() {
         return String.valueOf(free);
     }
+
+    public void addFree(int count){
+        total+=count;
+        free+=count;
+    }
+
+    public void minusFree(int count) {
+        total-=count;
+        free-=count;
+    }
 }

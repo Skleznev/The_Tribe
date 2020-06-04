@@ -1,12 +1,12 @@
 package com.skleznevco.thetribe;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.skleznevco.thetribe.Adapter.BuildAdapter;
 import com.skleznevco.thetribe.Adapter.ResourceAdapter;
@@ -26,7 +26,7 @@ public class GameActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        gameRules = new GameRules(GameRules.Difficulty.EASY);
+
         resourceInterface = new ResourceInterface() {
             @Override
             public void update() {
@@ -38,7 +38,7 @@ public class GameActivity extends AppCompatActivity {
 
             }
         };
-
+        gameRules = new GameRules(GameRules.Difficulty.EASY,resourceInterface);
         resourceAdapter = new ResourceAdapter(this);
         workAdapter= new WorkAdapter(this, resourceInterface);
         tribeAdapter = new TribeAdapter(this);
