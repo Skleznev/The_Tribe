@@ -53,4 +53,9 @@ public class Human{
         total-=count;
         free-=count;
     }
+
+    public void addBusy(int count) {
+        busy+=count;
+        free-=count;
+    }
 }

@@ -58,8 +58,9 @@ public class WorkAdapter extends BaseAdapter {
         text_count.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface);
-                changeCountDialog.setMaxSeek(resource.getHuman(Resource.ResourceType.WORKERS).getFree());
+                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface,text_count,position);
+                changeCountDialog.setMaxSeek(String.valueOf(Integer.parseInt(resource.getHuman(Resource.ResourceType.WORKERS).getFree())+resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers()));
+                changeCountDialog.setCurrentCount(resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers());
                 changeCountDialog.show();
             }
         });

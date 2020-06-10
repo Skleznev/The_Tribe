@@ -168,8 +168,8 @@ public class BuildingDialog extends Dialog {
                 final TextView TH_text = buildLayout.findViewById(R.id.TH_text);
                 Button TH_button=buildLayout.findViewById(R.id.TH_button);
                 SeekBar TH_seekbar = buildLayout.findViewById(R.id.TH_seekbar);
-                TH_seekbar.setMax((GameRules.getResource().getItem(Resource.ResourceType.GOLD).getTotalInt()-Integer.parseInt(GameRules.getResource().getItem(Resource.ResourceType.GOLD).getNegative()))/20);
-
+                TH_seekbar.setMax((GameRules.getResource().getItem(Resource.ResourceType.GOLD)
+                        .getTotalInt()-Integer.parseInt(GameRules.getResource().getItem(Resource.ResourceType.GOLD).getNegative()))/20);
                 TH_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

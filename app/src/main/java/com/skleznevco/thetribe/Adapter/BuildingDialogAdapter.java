@@ -1,6 +1,8 @@
 package com.skleznevco.thetribe.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,7 @@ public class BuildingDialogAdapter extends BaseAdapter {
         return position;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
@@ -49,7 +52,9 @@ public class BuildingDialogAdapter extends BaseAdapter {
         }
         TextView textView = view.findViewById(R.id.build_cost);
         textView.setText(building.getCostUpgrade(position).toString());
-
+        if (position<building.getLevel()){
+            textView.setBackgroundColor(1);
+        }
         return  view;
     }
 }

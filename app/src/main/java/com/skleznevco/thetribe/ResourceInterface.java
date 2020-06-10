@@ -4,6 +4,6 @@ public interface ResourceInterface {
 
     void update();
 
-    void setWorkers();
+    void setWorkers(int count);
 
 }

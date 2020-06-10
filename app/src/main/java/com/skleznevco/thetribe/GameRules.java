@@ -97,10 +97,16 @@ public class GameRules {
 
 
     public static void makeTurn() {
-
         for(Resource.ResourceType type : Resource.ResourceType.values()){
             if(type.ordinal()<4)
                 resource.getItem(type).calculateTotal();
+        }
+
+        for(Resource.ResourceType type : Resource.ResourceType.values()){
+            if(type.ordinal()<4) {
+                resource.getItem(type).setPositive(calculatePositive(type));
+                resource.getItem(type).setNegative(calculateNegative(type));
+            }
         }
     }
 

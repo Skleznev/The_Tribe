@@ -46,11 +46,11 @@ public class Building {
                 img = R.drawable.tower;
                 return;
             case POWER:
-                name = "Склад";
+                name = "Мастерская";
                 img = R.drawable.tools;
                 return;
             case THEATRE:
-                name = "Афмфитеатр";
+                name = "Театр";
                 img = R.drawable.theatre;
                 return;
             case EMBASSY:

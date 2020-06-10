@@ -8,9 +8,8 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_height="180dp"
+        android:orientation="horizontal">
 
         <GridView
             android:id="@+id/listCount"
@@ -45,7 +44,7 @@
 
         <ListView
             android:id="@+id/list_resources"
-            android:layout_width="wrap_content"
+            android:layout_width="617dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
@@ -56,21 +55,18 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="10dp"
         android:progress="65" />
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="200dp"
         android:orientation="horizontal">
 
         <GridView
             android:id="@+id/grid_builds"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_width="375dp"
+            android:layout_height="200dp">
 
         </GridView>
 
@@ -78,9 +74,8 @@
             android:id="@+id/list_tribes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:dividerHeight="10dp"
             android:divider="@android:color/transparent"
-            android:layout_weight="1" />
+            android:dividerHeight="10dp" />
     </LinearLayout>
 
 </LinearLayout>

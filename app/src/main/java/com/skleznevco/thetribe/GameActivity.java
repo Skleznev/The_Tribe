@@ -34,7 +34,8 @@ public class GameActivity extends AppCompatActivity {
             }
 
             @Override
-            public void setWorkers() {
+            public void setWorkers(int count) {
+                GameRules.getResource().getHuman(Resource.ResourceType.WORKERS).addBusy(count);
 
             }
         };
@@ -62,7 +63,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                GameRules.makeTurn();
 
                 resourceAdapter.notifyDataSetChanged();
             }

@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.skleznevco.thetribe.GameRules;
 import com.skleznevco.thetribe.R;
+import com.skleznevco.thetribe.Resource;
 import com.skleznevco.thetribe.ResourceInterface;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
@@ -24,13 +26,15 @@ public class ChangeCountDialog extends Dialog {
     Button button_cancel;
     String count;
     ResourceInterface resourceInterface;
+    int position;
 
 
 
-    public ChangeCountDialog(@NonNull Context context, ResourceInterface resourceInterface) {
+    public ChangeCountDialog(@NonNull Context context, ResourceInterface resourceInterface,TextView target, int position) {
         super(context);
         this.target = target;
         this.resourceInterface = resourceInterface;
+        this.position = position;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.fragment_defence_military, null);
         setContentView(layout);
@@ -48,10 +52,12 @@ private void initialView(){
     button_ok.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-//            if (count.length()<2){
-//                target.setText("0".concat(count));
-//            }
-//            else target.setText(count);
+            if (count.length()<2){
+                target.setText("0".concat(count));
+            }
+            else target.setText(count);
+            resourceInterface.setWorkers(Integer.parseInt(count)-GameRules.getResource().getItem(Resource.ResourceType.values()[position]).getCountWorkers());
+            GameRules.getResource().getItem(Resource.ResourceType.values()[position]).setCountWorkers(Integer.parseInt(count));
             resourceInterface.update();
 
             cancel();
@@ -87,7 +93,7 @@ private void initialView(){
     public void setMaxSeek(String max){
         seekBar.setMax(Integer.parseInt(max));
     }
-
+    public void setCurrentCount(int count){seekBar.setProgress(count);}
 
 
 
