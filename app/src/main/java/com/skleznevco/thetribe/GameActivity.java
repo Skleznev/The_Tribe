@@ -1,5 +1,8 @@
 package com.skleznevco.thetribe;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,12 +24,13 @@ public class GameActivity extends AppCompatActivity {
     private BuildAdapter buildAdapter;
     private TribeAdapter tribeAdapter;
     private ResourceInterface resourceInterface;
+    private Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        context = this;
         resourceInterface = new ResourceInterface() {
             @Override
             public void update() {
@@ -64,6 +68,10 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 GameRules.makeTurn();
+
+
+                ChanceDialog dialog = new ChanceDialog();
+                dialog.show(getSupportFragmentManager(), "custom");
 
                 resourceAdapter.notifyDataSetChanged();
             }

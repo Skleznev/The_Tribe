@@ -1,5 +1,8 @@
 package com.skleznevco.thetribe;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+
 public class GameRules {
 
     public static void pay(Payment payment) {
@@ -20,10 +23,19 @@ public class GameRules {
         return 0;
     }
 
+    public static double getLuckyChance() {
+        return luckyChance;
+    }
+
+    public static void updateLuckyChance() {
+        GameRules.luckyChance =  0.5 + builds.getBuilding(Builds.BuildingType.CHURCH).getLevel()*0.15;
+    }
+
     enum Difficulty{
         EASY, MEDIUM, HARD
     }
     private Difficulty gameDifficulty;
+    static private double luckyChance;
     static private Resource resource;
     static private Builds builds;
     static ResourceInterface resourceInterface;
@@ -97,6 +109,8 @@ public class GameRules {
 
 
     public static void makeTurn() {
+        updateLuckyChance();
+
         for(Resource.ResourceType type : Resource.ResourceType.values()){
             if(type.ordinal()<4)
                 resource.getItem(type).calculateTotal();
@@ -131,4 +145,6 @@ public class GameRules {
         return null;
 
     }
+
+
 }
