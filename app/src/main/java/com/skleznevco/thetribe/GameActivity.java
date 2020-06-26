@@ -1,8 +1,7 @@
 package com.skleznevco.thetribe;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +15,8 @@ import com.skleznevco.thetribe.Adapter.ResourceAdapter;
 import com.skleznevco.thetribe.Adapter.TribeAdapter;
 import com.skleznevco.thetribe.Adapter.WorkAdapter;
 
+import java.util.Objects;
+
 
 public class GameActivity extends AppCompatActivity {
     private GameRules gameRules;
@@ -26,10 +27,18 @@ public class GameActivity extends AppCompatActivity {
     private ResourceInterface resourceInterface;
     private Context context;
 
+    private GameRules.Difficulty gameDifficulty;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        gameDifficulty = convertStringToDifficulty(Objects.requireNonNull(
+                intent.getStringExtra("Difficulty")));
+
+
         context = this;
         resourceInterface = new ResourceInterface() {
             @Override
@@ -43,9 +52,9 @@ public class GameActivity extends AppCompatActivity {
 
             }
         };
-        gameRules = new GameRules(GameRules.Difficulty.EASY,resourceInterface);
+        gameRules = new GameRules(gameDifficulty, resourceInterface);
         resourceAdapter = new ResourceAdapter(this);
-        workAdapter= new WorkAdapter(this, resourceInterface);
+        workAdapter = new WorkAdapter(this, resourceInterface);
         tribeAdapter = new TribeAdapter(this);
         buildAdapter = new BuildAdapter(this);
         ListView listView = this.findViewById(R.id.list_resources);
@@ -80,6 +89,16 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    private GameRules.Difficulty convertStringToDifficulty(String s) {
+        switch (s) {
+            case "MEDIUM":
+                return GameRules.Difficulty.MEDIUM;
+            case "HARD":
+                return GameRules.Difficulty.HARD;
+            default:
+                return GameRules.Difficulty.EASY;
+        }
+    }
 
 
 }
