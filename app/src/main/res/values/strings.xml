@@ -5,4 +5,7 @@
     <string name="difficulty_2">Medium</string>
     <string name="difficulty_3">Hard</string>
 
+    <string name="upgrade_button">Построить</string>
+
+
 </resources>

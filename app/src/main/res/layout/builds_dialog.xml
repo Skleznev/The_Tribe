@@ -10,24 +10,34 @@
         android:id="@+id/build_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:gravity="center"
-        tools:text="Name" />
+        tools:text="Name"
+        android:textSize="16sp"/>
 
     <GridView
         android:id="@+id/dialog_grid_builds"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+
+        android:columnWidth="50dp"
+        android:gravity="center"
+        android:horizontalSpacing="2dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp"
+
+        android:clickable="false"
         android:numColumns="3">
 
     </GridView>
 
     <Button
         android:id="@+id/upgrade"
-        android:text="Построить"
+        android:text="@string/upgrade_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textSize="16sp"/>
 
 
-    </Button>
 
 </LinearLayout>
