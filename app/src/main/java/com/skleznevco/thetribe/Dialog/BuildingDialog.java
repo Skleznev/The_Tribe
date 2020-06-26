@@ -60,8 +60,8 @@ public class BuildingDialog extends Dialog {
                 final SeekBar FR_seekbar = buildLayout.findViewById(R.id.FR_seekbar);
                 final TextView FR_text_left = buildLayout.findViewById(R.id.FR_text_left);
                 final TextView FR_text_right= buildLayout.findViewById(R.id.FR_text_right);
-                final Spinner FR_spinner_left = buildLayout.findViewById(R.id.FR_spiner_left);
-                final Spinner FR_spinner_right = buildLayout.findViewById(R.id.FR_spiner_right);
+                final Spinner FR_spinner_left = buildLayout.findViewById(R.id.FR_spinner_left);
+                final Spinner FR_spinner_right = buildLayout.findViewById(R.id.FR_spinner_right);
 
                 Button FR_button=buildLayout.findViewById(R.id.FR_button);
                 if (GameRules.getBuilds().getBuilding(Builds.BuildingType.FAIR).getLevel()==0) FR_button.setEnabled(false);
