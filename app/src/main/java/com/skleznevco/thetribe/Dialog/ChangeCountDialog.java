@@ -56,10 +56,15 @@ private void initialView(){
                 target.setText("0".concat(count));
             }
             else target.setText(count);
-            resourceInterface.setWorkers(Integer.parseInt(count)-GameRules.getResource().getItem(Resource.ResourceType.values()[position]).getCountWorkers());
-            GameRules.getResource().getItem(Resource.ResourceType.values()[position]).setCountWorkers(Integer.parseInt(count));
-            resourceInterface.update();
-
+            if (position==0){
+                resourceInterface.setMilitary(Integer.parseInt(count));
+                resourceInterface.update();
+            }
+            else {
+                resourceInterface.setWorkers(Integer.parseInt(count) - GameRules.getResource().getItem(Resource.ResourceType.values()[position]).getCountWorkers());
+                GameRules.getResource().getItem(Resource.ResourceType.values()[position]).setCountWorkers(Integer.parseInt(count));
+                resourceInterface.update();
+            }
             cancel();
         }
     });

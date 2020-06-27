@@ -6,4 +6,6 @@ public interface ResourceInterface {
 
     void setWorkers(int count);
 
+    void setMilitary(int count);
+
 }

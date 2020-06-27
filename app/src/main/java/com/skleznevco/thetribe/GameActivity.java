@@ -14,6 +14,7 @@ import com.skleznevco.thetribe.Adapter.BuildAdapter;
 import com.skleznevco.thetribe.Adapter.ResourceAdapter;
 import com.skleznevco.thetribe.Adapter.TribeAdapter;
 import com.skleznevco.thetribe.Adapter.WorkAdapter;
+import com.skleznevco.thetribe.Dialog.ChangeCountDialog;
 
 import java.util.Objects;
 
@@ -52,6 +53,11 @@ public class GameActivity extends AppCompatActivity {
                 GameRules.getResource().getHuman(Resource.ResourceType.WORKERS).addBusy(count);
 
             }
+
+            @Override
+            public void setMilitary(int count) {
+                GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).addBusy(count - Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).getBusy()));
+            }
         };
         gameRules = new GameRules(gameDifficulty, resourceInterface);
         resourceAdapter = new ResourceAdapter(this);
@@ -86,6 +92,17 @@ public class GameActivity extends AppCompatActivity {
                 resourceAdapter.notifyDataSetChanged();
             }
         });
+        final Button shield = findViewById(R.id.shield);
+        shield.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface,shield,0);
+                changeCountDialog.setMaxSeek(String.valueOf(Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).getTotal())));
+                changeCountDialog.setCurrentCount(Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).getBusy()));
+                changeCountDialog.show();
+            }
+        });
+
 
 
     }
