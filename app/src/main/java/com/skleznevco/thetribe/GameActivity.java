@@ -46,6 +46,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void update() {
                 resourceAdapter.update();
+                buildAdapter.notifyDataSetChanged();
             }
 
             @Override

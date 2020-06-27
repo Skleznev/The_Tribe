@@ -3,6 +3,7 @@ package com.skleznevco.thetribe.Dialog;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -42,11 +43,20 @@ public class BuildingDialog extends Dialog {
         gridView.setAdapter(adapter);
 
         Button button = layout.findViewById(R.id.upgrade);
+
+            if (GameRules.canPay(building.getCostUpgrade(building.getLevel()+1)) && (building.getLevel()<GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel()||building.getName().equals("Ратуша"))) {
+                button.setBackgroundColor(Color.parseColor("#00FF00"));
+            } else {
+                button.setBackgroundColor(Color.parseColor("#FF0000"));
+            }
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(GameRules.canPay(building.getCostUpgrade(building.getLevel())) ){
+                if(GameRules.canPay(building.getCostUpgrade(building.getLevel()))&& (building.getLevel()<GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel()||building.getName().equals("Ратуша")) ){
                     building.levelUp();
+                    GameRules.updateResourse();
+                    cancel();
                 }
             }
         });
@@ -195,7 +205,6 @@ public class BuildingDialog extends Dialog {
                 });
                 break;
         }
-
 
 
 
