@@ -46,7 +46,8 @@
             android:id="@+id/list_resources"
             android:layout_width="617dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
 
 
     </LinearLayout>
