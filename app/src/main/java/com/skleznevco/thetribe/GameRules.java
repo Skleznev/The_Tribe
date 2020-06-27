@@ -1,24 +1,46 @@
 package com.skleznevco.thetribe;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-
 public class GameRules {
+    private Difficulty gameDifficulty;
+    static private double luckyChance;
+    static private Resource resource;
+    static private Builds builds;
+    static ResourceInterface resourceInterface;
+    static Integer eventChance = 50;
+
+
+    public GameRules(Difficulty gameDifficulty, ResourceInterface resourceInterface) {
+
+        this.resourceInterface = resourceInterface;
+        this.gameDifficulty = gameDifficulty;
+        resource = new Resource(getGameDifficulty());
+        builds = new Builds(getGameDifficulty());
+
+        for (Resource.ResourceType type : Resource.ResourceType.values()) {
+            if (type.ordinal() < 4) {
+                resource.getItem(type).setPositive(calculatePositive(type));
+                resource.getItem(type).setNegative(calculateNegative(type));
+            }
+        }
+    }
 
     public static void pay(Payment payment) {
 
-        for (Resource.ResourceType type: Resource.ResourceType.values()) {
-            if (type== Resource.ResourceType.WORKERS) return;
-           resource.getItem(type).setNegative(payment.getItemCount(type));
+        for (Resource.ResourceType type : Resource.ResourceType.values()) {
+            if (type == Resource.ResourceType.WORKERS) return;
+            resource.getItem(type).setNegative(payment.getItemCount(type));
         }
 
     }
 
     public static double getFairCoef() {
-        switch (builds.getBuilding(Builds.BuildingType.FAIR).getLevel()){
-            case 1: return 0.5;
-            case 2: return 0.75;
-            case 3: return 1;
+        switch (builds.getBuilding(Builds.BuildingType.FAIR).getLevel()) {
+            case 1:
+                return 0.5;
+            case 2:
+                return 0.75;
+            case 3:
+                return 1;
         }
         return 0;
     }
@@ -28,38 +50,19 @@ public class GameRules {
     }
 
     public static void updateLuckyChance() {
-        GameRules.luckyChance =  0.5 + builds.getBuilding(Builds.BuildingType.CHURCH).getLevel()*0.15;
+        GameRules.luckyChance = 0.5 + builds.getBuilding(Builds.BuildingType.CHURCH).getLevel() * 0.15;
     }
 
-    enum Difficulty{
+    enum Difficulty {
         EASY, MEDIUM, HARD
     }
-    private Difficulty gameDifficulty;
-    static private double luckyChance;
-    static private Resource resource;
-    static private Builds builds;
-    static ResourceInterface resourceInterface;
+
     public static boolean canPay(Payment payment) {
-        for (Resource.ResourceType type: Resource.ResourceType.values()) {
-            if (type== Resource.ResourceType.WORKERS) return true;
-            if (payment.getItemCount(type)>resource.getItem(type).getTotalInt()) return false;
+        for (Resource.ResourceType type : Resource.ResourceType.values()) {
+            if (type == Resource.ResourceType.WORKERS) return true;
+            if (payment.getItemCount(type) > resource.getItem(type).getTotalInt()) return false;
         }
         return true;
-    }
-
-    public GameRules(Difficulty gameDifficulty, ResourceInterface resourceInterface){
-
-        this.resourceInterface=resourceInterface;
-        this.gameDifficulty = gameDifficulty;
-        resource = new Resource(getGameDifficulty());
-        builds = new Builds(getGameDifficulty());
-
-        for(Resource.ResourceType type : Resource.ResourceType.values()){
-            if(type.ordinal()<4) {
-                resource.getItem(type).setPositive(calculatePositive(type));
-                resource.getItem(type).setNegative(calculateNegative(type));
-            }
-        }
     }
 
     public void setGameDifficulty(Difficulty gameDifficulty) {
@@ -71,9 +74,9 @@ public class GameRules {
         return gameDifficulty;
     }
 
-    static public Resource getResource(){
-        for(Resource.ResourceType type : Resource.ResourceType.values()){
-            if(type.ordinal()<4) {
+    static public Resource getResource() {
+        for (Resource.ResourceType type : Resource.ResourceType.values()) {
+            if (type.ordinal() < 4) {
                 resource.getItem(type).setPositive(calculatePositive(type));
             }
         }
@@ -81,7 +84,7 @@ public class GameRules {
         return resource;
     }
 
-    static public Builds getBuilds(){
+    static public Builds getBuilds() {
         return builds;
     }
 
@@ -89,18 +92,18 @@ public class GameRules {
         int count = resource.getItem(type).getCountWorkers();
 
         int coef = 50;
-        return  count* coef;
+        return count * coef;
     }
 
     private static int calculateNegative(Resource.ResourceType type) {
-        switch (type){
-            case FOOD:{
+        switch (type) {
+            case FOOD: {
                 int coef = 20;
-                return coef*resource.getPopulation();
+                return coef * resource.getPopulation();
             }
-            case GOLD:{
+            case GOLD: {
                 int coef = 20;
-                return coef *Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal());
+                return coef * Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal());
             }
         }
         return 0;
@@ -111,33 +114,34 @@ public class GameRules {
     public static void makeTurn() {
         updateLuckyChance();
 
-        for(Resource.ResourceType type : Resource.ResourceType.values()){
-            if(type.ordinal()<4)
+        for (Resource.ResourceType type : Resource.ResourceType.values()) {
+            if (type.ordinal() < 4)
                 resource.getItem(type).calculateTotal();
         }
 
-        for(Resource.ResourceType type : Resource.ResourceType.values()){
-            if(type.ordinal()<4) {
+        for (Resource.ResourceType type : Resource.ResourceType.values()) {
+            if (type.ordinal() < 4) {
                 resource.getItem(type).setPositive(calculatePositive(type));
                 resource.getItem(type).setNegative(calculateNegative(type));
             }
         }
     }
 
-    public static void addHuman(Resource.ResourceType type, int count){
+    public static void addHuman(Resource.ResourceType type, int count) {
         resource.getHuman(type).addFree(count);
-        if (type== Resource.ResourceType.MILITARY){
+        if (type == Resource.ResourceType.MILITARY) {
             resource.getHuman(Resource.ResourceType.WORKERS).minusFree(count);
         }
-        resource.getItem(Resource.ResourceType.GOLD).addNegative(count*20);
+        resource.getItem(Resource.ResourceType.GOLD).addNegative(count * 20);
         updateResourse();
 
     }
 
-    public static void updateResourse(){
+    public static void updateResourse() {
         resourceInterface.update();
     }
-    public static Resource.ResourceType stringToType(String word){
+
+    public static Resource.ResourceType stringToType(String word) {
         if (word.equals("Gold")) return Resource.ResourceType.GOLD;
         if (word.equals("Food")) return Resource.ResourceType.FOOD;
         if (word.equals("Wood")) return Resource.ResourceType.WOOD;
