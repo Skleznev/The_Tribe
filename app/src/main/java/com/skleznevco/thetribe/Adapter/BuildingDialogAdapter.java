@@ -54,7 +54,7 @@ public class BuildingDialogAdapter extends BaseAdapter {
         TextView textLevel = view.findViewById(R.id.build_level);
         textView.setText(building.getCostUpgrade(position).toString());
         if (position<building.getLevel()){
-            textLevel.setBackgroundColor(Color.parseColor("#00FFFF"));
+            textLevel.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
 
         return  view;
