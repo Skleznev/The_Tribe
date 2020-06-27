@@ -24,8 +24,6 @@ import com.skleznevco.thetribe.GameRules;
 import com.skleznevco.thetribe.R;
 import com.skleznevco.thetribe.Resource;
 
-import java.lang.reflect.Array;
-
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class BuildingDialog extends Dialog {
@@ -44,16 +42,16 @@ public class BuildingDialog extends Dialog {
 
         Button button = layout.findViewById(R.id.upgrade);
 
-            if (GameRules.canPay(building.getCostUpgrade(building.getLevel()+1)) && (building.getLevel()<GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel()||building.getName().equals("Ратуша"))) {
-                button.setBackgroundColor(Color.parseColor("#00FF00"));
-            } else {
-                button.setBackgroundColor(Color.parseColor("#FF0000"));
-            }
+        if (GameRules.canPay(building.getCostUpgrade(building.getLevel() + 1)) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
+            button.setBackgroundColor(Color.parseColor("#117864"));
+        } else {
+            button.setBackgroundColor(Color.parseColor("#D72323"));
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(GameRules.canPay(building.getCostUpgrade(building.getLevel()))&& (building.getLevel()<GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel()||building.getName().equals("Ратуша")) ){
+                if (GameRules.canPay(building.getCostUpgrade(building.getLevel())) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
                     building.levelUp();
                     GameRules.updateResourse();
                     cancel();
@@ -64,17 +62,18 @@ public class BuildingDialog extends Dialog {
         LayoutInflater factory = LayoutInflater.from(layout.getContext());
         LinearLayout buildLayout = layout.findViewById(R.id.build_layout);
 
-        switch (type){
+        switch (type) {
             case FAIR:
-                buildLayout.addView(factory.inflate(R.layout.fair_layout,null));
+                buildLayout.addView(factory.inflate(R.layout.fair_layout, null));
                 final SeekBar FR_seekbar = buildLayout.findViewById(R.id.FR_seekbar);
                 final TextView FR_text_left = buildLayout.findViewById(R.id.FR_text_left);
-                final TextView FR_text_right= buildLayout.findViewById(R.id.FR_text_right);
+                final TextView FR_text_right = buildLayout.findViewById(R.id.FR_text_right);
                 final Spinner FR_spinner_left = buildLayout.findViewById(R.id.FR_spinner_left);
                 final Spinner FR_spinner_right = buildLayout.findViewById(R.id.FR_spinner_right);
 
-                Button FR_button=buildLayout.findViewById(R.id.FR_button);
-                if (GameRules.getBuilds().getBuilding(Builds.BuildingType.FAIR).getLevel()==0) FR_button.setEnabled(false);
+                Button FR_button = buildLayout.findViewById(R.id.FR_button);
+                if (GameRules.getBuilds().getBuilding(Builds.BuildingType.FAIR).getLevel() == 0)
+                    FR_button.setEnabled(false);
 
                 ArrayAdapter<String> FR_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, new String[]{"Food", "Stone", "Wood", "Gold"});
                 FR_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -108,12 +107,12 @@ public class BuildingDialog extends Dialog {
                 });
 
 
-               FR_seekbar.setMax(GameRules.getResource().getItem(GameRules.stringToType(FR_spinner_left.getSelectedItem().toString())).getTotalInt());
+                FR_seekbar.setMax(GameRules.getResource().getItem(GameRules.stringToType(FR_spinner_left.getSelectedItem().toString())).getTotalInt());
                 FR_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                      FR_text_left.setText(String.valueOf(progress));
-                      FR_text_right.setText(String.valueOf((int)(progress*GameRules.getFairCoef())));
+                        FR_text_left.setText(String.valueOf(progress));
+                        FR_text_right.setText(String.valueOf((int) (progress * GameRules.getFairCoef())));
                     }
 
                     @Override
@@ -128,24 +127,24 @@ public class BuildingDialog extends Dialog {
                 });
                 break;
             case JAIL:
-                buildLayout.addView(factory.inflate(R.layout.jail_layout,null));
+                buildLayout.addView(factory.inflate(R.layout.jail_layout, null));
                 break;
             case POWER:
-                buildLayout.addView(factory.inflate(R.layout.power_layout,null));
+                buildLayout.addView(factory.inflate(R.layout.power_layout, null));
                 break;
             case TOWER:
-                buildLayout.addView(factory.inflate(R.layout.tower_layout,null));
+                buildLayout.addView(factory.inflate(R.layout.tower_layout, null));
                 break;
             case CHURCH:
-                buildLayout.addView(factory.inflate(R.layout.church_layout,null));
+                buildLayout.addView(factory.inflate(R.layout.church_layout, null));
                 break;
             case THEATRE:
-                buildLayout.addView(factory.inflate(R.layout.theatre_layout,null));
+                buildLayout.addView(factory.inflate(R.layout.theatre_layout, null));
                 break;
             case BARRACKS:
-                buildLayout.addView(factory.inflate(R.layout.baracs_layout,null));
+                buildLayout.addView(factory.inflate(R.layout.baracs_layout, null));
                 final TextView BR_text = buildLayout.findViewById(R.id.BR_text);
-                Button BR_button=buildLayout.findViewById(R.id.BR_button);
+                Button BR_button = buildLayout.findViewById(R.id.BR_button);
                 SeekBar BR_seekbar = buildLayout.findViewById(R.id.BR_seekbar);
                 BR_seekbar.setMax(Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.WORKERS).getFree()));
 
@@ -168,18 +167,18 @@ public class BuildingDialog extends Dialog {
                 BR_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GameRules.addHuman(Resource.ResourceType.MILITARY,Integer.parseInt(BR_text.getText().toString()));
+                        GameRules.addHuman(Resource.ResourceType.MILITARY, Integer.parseInt(BR_text.getText().toString()));
                         cancel();
                     }
                 });
                 break;
             case TOWN_HALL:
-                buildLayout.addView(factory.inflate(R.layout.town_hall_layout,null));
+                buildLayout.addView(factory.inflate(R.layout.town_hall_layout, null));
                 final TextView TH_text = buildLayout.findViewById(R.id.TH_text);
-                Button TH_button=buildLayout.findViewById(R.id.TH_button);
+                Button TH_button = buildLayout.findViewById(R.id.TH_button);
                 SeekBar TH_seekbar = buildLayout.findViewById(R.id.TH_seekbar);
                 TH_seekbar.setMax((GameRules.getResource().getItem(Resource.ResourceType.GOLD)
-                        .getTotalInt()-Integer.parseInt(GameRules.getResource().getItem(Resource.ResourceType.GOLD).getNegative()))/20);
+                        .getTotalInt() - Integer.parseInt(GameRules.getResource().getItem(Resource.ResourceType.GOLD).getNegative())) / 20);
                 TH_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -199,14 +198,12 @@ public class BuildingDialog extends Dialog {
                 TH_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        GameRules.addHuman(Resource.ResourceType.WORKERS,Integer.parseInt(TH_text.getText().toString()));
+                        GameRules.addHuman(Resource.ResourceType.WORKERS, Integer.parseInt(TH_text.getText().toString()));
                         cancel();
                     }
                 });
                 break;
         }
-
-
 
 
         setContentView(layout);

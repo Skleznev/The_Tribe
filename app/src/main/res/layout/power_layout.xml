@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
     android:orientation="horizontal">
 
     <RadioGroup
@@ -37,7 +38,12 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="129dp"
-        android:text="1.5x" />
+        android:text="1.5x"
+
+        android:textColor="#FFF"
+        android:background="#1A5276"
+
+        android:textSize="30dp"/>
 
 
 </LinearLayout>
