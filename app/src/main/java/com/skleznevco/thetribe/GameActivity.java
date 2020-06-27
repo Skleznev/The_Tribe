@@ -34,6 +34,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Intent intent = getIntent();
         gameDifficulty = convertStringToDifficulty(Objects.requireNonNull(
                 intent.getStringExtra("Difficulty")));

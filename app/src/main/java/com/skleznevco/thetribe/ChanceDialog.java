@@ -18,7 +18,7 @@ public class ChanceDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        if (random.nextInt(100) + 1 < GameRules.getLuckyChance()) {
+        if (random.nextInt(100) + 1 < GameRules.getLuckyChance()*100) {
             eventMessage = "Хорошее событие";
         } else {
             eventMessage = "Плохое событие";
