@@ -15,6 +15,7 @@
             android:id="@+id/listCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:layout_weight="1">
 
         </GridView>
@@ -22,13 +23,13 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="30dp">
 
             <Button
                 android:id="@+id/turn"
                 android:layout_width="70dp"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:text="Ход"
                 android:textColor="#1A5276" />
 
@@ -37,6 +38,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@drawable/shield"
+                android:layout_marginTop="20dp"
                 android:textColor="#1A5276"
                 android:text="Щит" />
 
@@ -45,12 +47,12 @@
 
         <ListView
             android:id="@+id/list_resources"
-            android:layout_width="617dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_gravity="center"/>
-
-
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 
     <ProgressBar
