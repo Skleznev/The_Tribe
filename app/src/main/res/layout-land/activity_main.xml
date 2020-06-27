@@ -20,23 +20,24 @@
         </GridView>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/turn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Ход" />
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="Ход"
+                android:textColor="#1A5276" />
 
             <Button
                 android:id="@+id/shield"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:background="@drawable/shield"
+                android:textColor="#1A5276"
                 android:text="Щит" />
 
 

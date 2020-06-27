@@ -54,6 +54,22 @@ public class WorkAdapter extends BaseAdapter {
         Button btn_up = view.findViewById(R.id.count_up);
         Button btn_down = view.findViewById(R.id.count_down);
         final TextView text_count = view.findViewById(R.id.count);
+        TextView text_name = view.findViewById(R.id.name);
+
+        switch (position){
+            case 0:
+                text_name.setText("Пища");
+                break;
+            case 1:
+                text_name.setText("Камень");
+                break;
+            case 2:
+                text_name.setText("Дерево");
+                break;
+            case 3:
+                text_name.setText("Золото");
+                break;
+        }
 
         text_count.setOnClickListener(new View.OnClickListener() {
             @Override

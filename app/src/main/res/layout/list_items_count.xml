@@ -4,11 +4,21 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="#1A5276"/>
+
     <Button
         android:id="@+id/count_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:background="#1A5276"
+        android:textColor="#FFFFFF"
         android:text="↑" />
 
     <TextView
@@ -17,6 +27,7 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:gravity="center"
+        android:textColor="#1A5276"
         android:text="00" />
 
     <Button
@@ -24,5 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:background="#1A5276"
+        android:textColor="#FFFFFF"
         android:text="↓" />
 </LinearLayout>

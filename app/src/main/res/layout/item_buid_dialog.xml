@@ -11,4 +11,12 @@
         android:text="Цена">
     </TextView>
 
+    <TextView
+        android:id="@+id/build_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Уровень 1">
+    </TextView>
+
 </LinearLayout>
