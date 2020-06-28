@@ -9,18 +9,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="Выберете сложность игры"
-            android:textStyle="bold"
             android:textColor="#1A5276"
             android:textSize="20sp"
-            android:layout_gravity="center_horizontal">
+            android:textStyle="bold">
 
         </TextView>
 
@@ -36,14 +36,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:text="@string/difficulty_1"
-                android:theme="@style/MyRadioButton"/>
+                android:theme="@style/MyRadioButton" />
 
             <RadioButton
                 android:id="@+id/difficulty_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/difficulty_2"
-                android:theme="@style/MyRadioButton"/>
+                android:theme="@style/MyRadioButton" />
 
             <RadioButton
                 android:id="@+id/difficulty_hard"
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="@string/difficulty_3"
-                android:theme="@style/MyRadioButton"/>
+                android:theme="@style/MyRadioButton" />
 
         </RadioGroup>
 
@@ -64,10 +64,10 @@
             android:layout_marginTop="20dp"
 
             android:background="#1A5276"
-            android:textColor="#FFF"
+            android:padding="10dp"
             android:text="@string/start_game"
+            android:textColor="#FFF"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:padding="10dp"/>
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

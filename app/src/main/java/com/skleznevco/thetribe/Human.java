@@ -1,11 +1,11 @@
 package com.skleznevco.thetribe;
 
-public class Human{
+public class Human {
     private int busy;
     private int free;
     private int total;
 
-    public Human(int total){
+    public Human(int total) {
         this.total = total;
         this.free = total;
     }
@@ -15,7 +15,7 @@ public class Human{
     }
 
     public boolean incrementBusy() {
-        if(busy < total){
+        if (busy < total) {
             busy++;
             free--;
             return true;
@@ -24,7 +24,7 @@ public class Human{
     }
 
     public boolean incrementFree() {
-        if (free < total){
+        if (free < total) {
             free++;
             busy--;
             return true;
@@ -44,19 +44,19 @@ public class Human{
         return String.valueOf(free);
     }
 
-    public void addFree(int count){
-        total+=count;
-        free+=count;
+    public void addFree(int count) {
+        total += count;
+        free += count;
     }
 
     public void minusFree(int count) {
-        total-=count;
-        free-=count;
+        total -= count;
+        free -= count;
     }
 
     public void addBusy(int count) {
-        busy+=count;
-        free-=count;
+        busy += count;
+        free -= count;
     }
 
 }

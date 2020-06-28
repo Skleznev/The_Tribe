@@ -22,7 +22,7 @@ public class WorkAdapter extends BaseAdapter {
     ResourceInterface resourceInterface;
     Resource resource;
 
-    public WorkAdapter(Context context, ResourceInterface resourceInterface){
+    public WorkAdapter(Context context, ResourceInterface resourceInterface) {
         this.context = context;
         this.resourceInterface = resourceInterface;
         resource = GameRules.getResource();
@@ -56,7 +56,7 @@ public class WorkAdapter extends BaseAdapter {
         final TextView text_count = view.findViewById(R.id.count);
         TextView text_name = view.findViewById(R.id.name);
 
-        switch (position){
+        switch (position) {
             case 0:
                 text_name.setText("Пища");
                 break;
@@ -74,8 +74,8 @@ public class WorkAdapter extends BaseAdapter {
         text_count.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface,text_count,position);
-                changeCountDialog.setMaxSeek(String.valueOf(Integer.parseInt(resource.getHuman(Resource.ResourceType.WORKERS).getFree())+resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers()));
+                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface, text_count, position);
+                changeCountDialog.setMaxSeek(String.valueOf(Integer.parseInt(resource.getHuman(Resource.ResourceType.WORKERS).getFree()) + resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers()));
                 changeCountDialog.setCurrentCount(resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers());
                 changeCountDialog.show();
             }
@@ -98,7 +98,7 @@ public class WorkAdapter extends BaseAdapter {
         btn_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers() != 0 && resource.getHuman(Resource.ResourceType.WORKERS).incrementFree()){
+                if (resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers() != 0 && resource.getHuman(Resource.ResourceType.WORKERS).incrementFree()) {
                     resource.getItem(Resource.ResourceType.values()[position]).decrementCountWorkers();
                     resourceInterface.update();
                 }
@@ -108,19 +108,20 @@ public class WorkAdapter extends BaseAdapter {
         return view;
     }
 
-    private String convertToString(int position){
+    private String convertToString(int position) {
         String s = "0";
         int count = resource.getItem(Resource.ResourceType.values()[position]).getCountWorkers();
 
-        if (count < 10){
+        if (count < 10) {
             return s.concat(String.valueOf(count));
         }
 
         return String.valueOf(count);
     }
 
-    private interface WorkInterface{
+    private interface WorkInterface {
         void update(ResourceInterface resourceInterface);
+
         void setContWorkers(int count);
     }
 

@@ -15,7 +15,7 @@ public class WarAdapter extends BaseAdapter {
     LayoutInflater lInflater;
     private int turn;
 
-    public WarAdapter(Context context){
+    public WarAdapter(Context context) {
         this.context = context;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         turn = 0;
@@ -42,10 +42,10 @@ public class WarAdapter extends BaseAdapter {
         if (view == null) {
             view = lInflater.inflate(R.layout.war_items, parent, false);
         }
-        TextView textCount= view.findViewById(R.id.war_count);
-        TextView textColor= view.findViewById(R.id.war_color);
+        TextView textCount = view.findViewById(R.id.war_count);
+        TextView textColor = view.findViewById(R.id.war_color);
 
-        if (position==turn){
+        if (position == turn) {
             textCount.setVisibility(View.VISIBLE);
             textColor.setVisibility(View.VISIBLE);
             textCount.setText(String.valueOf(GameRules.getCountEnemy()));
@@ -55,8 +55,8 @@ public class WarAdapter extends BaseAdapter {
         return view;
     }
 
-    public void addTurn(){
-        turn ++;
+    public void addTurn() {
+        turn++;
         notifyDataSetChanged();
     }
 }

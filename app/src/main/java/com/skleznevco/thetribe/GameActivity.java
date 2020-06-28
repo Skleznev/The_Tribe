@@ -64,7 +64,7 @@ public class GameActivity extends AppCompatActivity {
 
             @Override
             public double getLoyalty() {
-                return progressBar.getProgress()*0.01;
+                return progressBar.getProgress() * 0.01;
             }
         };
         gameRules = new GameRules(gameDifficulty, resourceInterface);
@@ -94,13 +94,11 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (GameRules.getResource().getBusyPopulation()/GameRules.getResource().getPopulation()<=GameRules.getloyalty()/100){
-                    progressBar.setProgress(progressBar.getProgress()+10);
-                }
-                else progressBar.setProgress(progressBar.getProgress()-10);
+                if (GameRules.getResource().getBusyPopulation() / GameRules.getResource().getPopulation() <= GameRules.getloyalty() / 100) {
+                    progressBar.setProgress(progressBar.getProgress() + 10);
+                } else progressBar.setProgress(progressBar.getProgress() - 10);
 
                 GameRules.makeTurn();
-
 
 
                 ChanceDialog dialog = new ChanceDialog();
@@ -113,13 +111,12 @@ public class GameActivity extends AppCompatActivity {
         shield.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface,shield,-1);
+                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface, shield, -1);
                 changeCountDialog.setMaxSeek(String.valueOf(Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).getTotal())));
                 changeCountDialog.setCurrentCount(Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).getBusy()));
                 changeCountDialog.show();
             }
         });
-
 
 
     }

@@ -2,7 +2,6 @@ package com.skleznevco.thetribe.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import com.skleznevco.thetribe.Building;
 import com.skleznevco.thetribe.Builds;
 import com.skleznevco.thetribe.GameRules;
-import com.skleznevco.thetribe.Human;
 import com.skleznevco.thetribe.Item;
 import com.skleznevco.thetribe.R;
 import com.skleznevco.thetribe.Resource;
@@ -26,7 +24,7 @@ public class BuildingDialogAdapter extends BaseAdapter {
     LayoutInflater lInflater;
     Building building;
 
-    public BuildingDialogAdapter(Context context, Builds.BuildingType type){
+    public BuildingDialogAdapter(Context context, Builds.BuildingType type) {
         this.context = context;
         lInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         this.building = GameRules.getBuilds().getBuilding(type);
@@ -55,12 +53,12 @@ public class BuildingDialogAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.list_items_resources, parent, false);
         }
         Object line = getItem(position);
-        if (line instanceof Item){
+        if (line instanceof Item) {
             ((TextView) view.findViewById(R.id.positive_count)).setText(GameRules.typeToString((Resource.ResourceType.values()[position])));
             ((TextView) view.findViewById(R.id.negative_count)).setText(String.valueOf(building.getCostUpgrade(building.getLevel()).getItemCount(Resource.ResourceType.values()[position])));
             ((TextView) view.findViewById(R.id.total_count)).setText(GameRules.getResource().getItem(Resource.ResourceType.values()[position]).getTotal());
         }
-        ((ViewManager)(view.findViewById(R.id.resource_name)).getParent()).removeView((view.findViewById(R.id.resource_name)));
+        ((ViewManager) (view.findViewById(R.id.resource_name)).getParent()).removeView((view.findViewById(R.id.resource_name)));
 
         return view;
     }

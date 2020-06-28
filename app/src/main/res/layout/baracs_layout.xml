@@ -12,10 +12,10 @@
         android:layout_weight="2"
         android:gravity="center"
 
-        android:textStyle="bold"
+        android:text="0"
         android:textColor="#1A5276"
         android:textSize="20sp"
-        android:text="0" />
+        android:textStyle="bold" />
 
     <SeekBar
         android:id="@+id/BR_seekbar"
@@ -28,8 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:textSize="16sp"
-        android:text="Обучить"
         android:background="#1A5276"
-        android:textColor="#FFF"/>
+        android:text="Обучить"
+        android:textColor="#FFF"
+        android:textSize="16sp" />
 </LinearLayout>

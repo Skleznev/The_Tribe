@@ -4,11 +4,11 @@ public class Resource {
 
 
     public double getBusyPopulation() {
-        return Double.parseDouble(workers.getBusy())+Integer.parseInt(military.getBusy());
+        return Double.parseDouble(workers.getBusy()) + Integer.parseInt(military.getBusy());
     }
 
-    public enum ResourceType{
-        FOOD,STONE,WOOD,GOLD, WORKERS,MILITARY
+    public enum ResourceType {
+        FOOD, STONE, WOOD, GOLD, WORKERS, MILITARY
     }
 
 
@@ -21,8 +21,8 @@ public class Resource {
     private Human military;
 
 
-    public Resource(GameRules.Difficulty difficulty){
-        switch (difficulty){
+    public Resource(GameRules.Difficulty difficulty) {
+        switch (difficulty) {
             case EASY:
                 food = new Item(400);
                 stone = new Item(100);
@@ -53,24 +53,32 @@ public class Resource {
 
 
     public Item getItem(ResourceType type) {
-        switch (type){
-            case FOOD: return food;
-            case STONE:return stone;
-            case WOOD: return wood;
-            case GOLD: return gold;
+        switch (type) {
+            case FOOD:
+                return food;
+            case STONE:
+                return stone;
+            case WOOD:
+                return wood;
+            case GOLD:
+                return gold;
 
         }
         return null;
     }
-    public Human getHuman(ResourceType type){
-        switch (type){
-            case WORKERS: return workers;
-            case MILITARY: return military;
+
+    public Human getHuman(ResourceType type) {
+        switch (type) {
+            case WORKERS:
+                return workers;
+            case MILITARY:
+                return military;
         }
         return null;
     }
-    public int getPopulation(){
-        return Integer.parseInt(workers.getTotal())+Integer.parseInt(military.getTotal());
+
+    public int getPopulation() {
+        return Integer.parseInt(workers.getTotal()) + Integer.parseInt(military.getTotal());
     }
 
 }

@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:gravity="center">
+    android:padding="10dp">
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -13,36 +13,36 @@
         android:orientation="horizontal">
 
         <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="Пища"
-                android:theme="@style/MyRadioButton"/>
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Пища"
+            android:theme="@style/MyRadioButton" />
 
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="Камень"
-                android:theme="@style/MyRadioButton"/>
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Камень"
+            android:theme="@style/MyRadioButton" />
 
 
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="Дерево"
-                android:theme="@style/MyRadioButton"/>
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Дерево"
+            android:theme="@style/MyRadioButton" />
 
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Золото"
-                android:theme="@style/MyRadioButton"/>
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Золото"
+            android:theme="@style/MyRadioButton" />
 
     </RadioGroup>
 
@@ -52,9 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="#1A5276"
+        android:padding="2dp"
         android:text="1.5x"
         android:textColor="#FFF"
-        android:padding="2dp"
         android:textSize="16sp" />
 
 

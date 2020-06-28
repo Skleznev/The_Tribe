@@ -14,8 +14,8 @@ public class Building {
         createBuilding(type);
         if (random) {
             Random rand = new Random();
-            costService = new Payment(rand.nextInt(3)+1, rand.nextInt(4)+3, rand.nextInt(5)+2, rand.nextInt(3)+1);
-            costUpgrade = new Payment(rand.nextInt(30)+10, rand.nextInt(40)+30, rand.nextInt(50)+20, rand.nextInt(30)+15);
+            costService = new Payment(rand.nextInt(3) + 1, rand.nextInt(4) + 3, rand.nextInt(5) + 2, rand.nextInt(3) + 1);
+            costUpgrade = new Payment(rand.nextInt(30) + 10, rand.nextInt(40) + 30, rand.nextInt(50) + 20, rand.nextInt(30) + 15);
         } else {
             costService = new Payment(4, 7, 8, 4);
             costUpgrade = new Payment(40, 70, 80, 45);
@@ -69,8 +69,8 @@ public class Building {
     }
 
     public void levelUp() {
-            GameRules.pay(getCostUpgrade(level));
-            level++;
+        GameRules.pay(getCostUpgrade(level));
+        level++;
     }
 
     public int getLevel() {
@@ -84,7 +84,7 @@ public class Building {
     }
 
     public Payment getCostUpgrade(int coefficient) {
-        return costUpgrade.multiply(coefficient+1);
+        return costUpgrade.multiply(coefficient + 1);
     }
 
     public String getName() {

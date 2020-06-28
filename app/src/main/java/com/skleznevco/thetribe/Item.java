@@ -1,20 +1,21 @@
 package com.skleznevco.thetribe;
 
-public class Item{
+public class Item {
     private int positive;
     private int negative;
     private int total;
     private int countWorkers;
 
-    Item(int total){
+    Item(int total) {
         this.total = total;
     }
 
     public void setNegative(int negative) {
         this.negative = negative;
     }
+
     public void addNegative(int negative) {
-        this.negative+= negative;
+        this.negative += negative;
     }
 
     public void calculateTotal() {
@@ -48,23 +49,25 @@ public class Item{
     public void setCountWorkers(int countWorkers) {
         this.countWorkers = countWorkers;
     }
+
     public void incrementCountWorkers() {
-        countWorkers ++;
+        countWorkers++;
     }
+
     public void decrementCountWorkers() {
-        countWorkers --;
+        countWorkers--;
     }
 
     public void addPositive(int parseInt) {
-        this.positive+=parseInt;
+        this.positive += parseInt;
     }
 
     public void minusTotal(int parseInt) {
-        total-=parseInt;
+        total -= parseInt;
     }
 
     public void addTotal(int parseInt) {
-        total+=parseInt;
+        total += parseInt;
     }
 
     public void setTotal(int i) {

@@ -50,8 +50,7 @@ public class MainMenu extends AppCompatActivity {
                     Intent intent = new Intent(MainMenu.this, GameActivity.class);
                     intent.putExtra("Difficulty", gameDifficulty);
                     startActivity(intent);
-                }
-                else{
+                } else {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "Необходимо выбрать сложность", Toast.LENGTH_SHORT);
                     toast.show();

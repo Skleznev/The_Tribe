@@ -9,21 +9,21 @@
         android:id="@+id/loyaltyText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_weight="1"
-        android:textSize="16sp"
         android:gravity="center"
-        android:text="Текущий множитель отдыха: 0.5 " />
+        android:padding="10dp"
+        android:text="Текущий множитель отдыха: 0.5 "
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/workButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#1A5276"
         android:gravity="center"
-        android:textSize="16sp"
         android:text="Трудовой день"
 
         android:textColor="#FFF"
-        android:background="#1A5276"/>
+        android:textSize="16sp" />
 </LinearLayout>

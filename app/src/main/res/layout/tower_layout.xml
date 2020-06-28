@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp">
@@ -9,21 +9,21 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:gravity="center"
         android:layout_weight="1"
-        android:text="Вероятность атаки на поселение: 0.5 " />
+        android:gravity="center"
+        android:text="Вероятность атаки на поселение: 0.5 "
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="#1A5276"
         android:enabled="false"
         android:gravity="center"
-        android:textSize="16sp"
         android:text="Активировать смотровую вышку"
 
         android:textColor="#FFF"
-        android:background="#1A5276"/>
+        android:textSize="16sp" />
 </LinearLayout>

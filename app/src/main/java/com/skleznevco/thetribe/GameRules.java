@@ -17,7 +17,7 @@ public class GameRules {
 
         this.resourceInterface = resourceInterface;
         this.gameDifficulty = gameDifficulty;
-        this.eventChance =50;
+        this.eventChance = 50;
         resource = new Resource(getGameDifficulty());
         builds = new Builds(getGameDifficulty());
 
@@ -55,17 +55,17 @@ public class GameRules {
     }
 
     public static int getLuckyChance() {
-        return  50 + builds.getBuilding(Builds.BuildingType.CHURCH).getLevel() * 15;
+        return 50 + builds.getBuilding(Builds.BuildingType.CHURCH).getLevel() * 15;
     }
 
     public static double getCoefLoyal(boolean good) {
         if (good) return resourceInterface.getLoyalty();
-        return -1.0+resourceInterface.getLoyalty();
+        return -1.0 + resourceInterface.getLoyalty();
     }
 
     public static double getloyalty() {
         if (workDay) return 100;
-        return  70 + builds.getBuilding(Builds.BuildingType.THEATRE).getLevel() * 10;
+        return 70 + builds.getBuilding(Builds.BuildingType.THEATRE).getLevel() * 10;
     }
 
     public static void activateWorkDay() {
@@ -74,17 +74,23 @@ public class GameRules {
     }
 
     public static int getCountEnemy() {
-        return new Random().nextInt(5)*turn;
+        return new Random().nextInt(5) * turn;
     }
 
     public static String typeToString(Resource.ResourceType type) {
-        switch (type){
-            case FOOD: return "Пища";
-            case STONE:return "Камень";
-            case WOOD: return "Дерево";
-            case GOLD: return "Золото";
-            case WORKERS:return "Рабочие";
-            case MILITARY:return "Военные";
+        switch (type) {
+            case FOOD:
+                return "Пища";
+            case STONE:
+                return "Камень";
+            case WOOD:
+                return "Дерево";
+            case GOLD:
+                return "Золото";
+            case WORKERS:
+                return "Рабочие";
+            case MILITARY:
+                return "Военные";
 
         }
         return null;
@@ -149,7 +155,7 @@ public class GameRules {
 
 
     public static void makeTurn() {
-        workDayCD-=1;
+        workDayCD -= 1;
         turn++;
         for (Resource.ResourceType type : Resource.ResourceType.values()) {
             if (type.ordinal() < 4)
@@ -165,7 +171,7 @@ public class GameRules {
     }
 
     public static void addHuman(Resource.ResourceType type, int count) {
-        Payment cost = new Payment(0,0,0,count*50);
+        Payment cost = new Payment(0, 0, 0, count * 50);
         if (canPay(cost)) {
             pay(cost);
             resource.getHuman(type).addFree(count);

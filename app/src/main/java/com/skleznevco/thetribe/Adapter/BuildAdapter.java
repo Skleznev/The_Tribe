@@ -20,7 +20,7 @@ public class BuildAdapter extends BaseAdapter {
     ImageView imageBuild;
 
 
-    public BuildAdapter(Context context){
+    public BuildAdapter(Context context) {
         this.context = context;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         builds = GameRules.getBuilds();
@@ -32,8 +32,7 @@ public class BuildAdapter extends BaseAdapter {
     }
 
     @Override
-    public Builds.BuildingType getItem(int position)
-    {
+    public Builds.BuildingType getItem(int position) {
         return Builds.BuildingType.values()[position];
     }
 
@@ -51,7 +50,7 @@ public class BuildAdapter extends BaseAdapter {
 
         final Building building = builds.getBuilding(getItem(position));
 
-        setLevel(view,building.getLevel());
+        setLevel(view, building.getLevel());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +66,7 @@ public class BuildAdapter extends BaseAdapter {
         return view;
     }
 
-    private void setLevel(View view,int level) {
+    private void setLevel(View view, int level) {
         switch (level) {
             case 3:
                 (view.findViewById(R.id.level_3)).setVisibility(View.VISIBLE);
