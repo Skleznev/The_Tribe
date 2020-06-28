@@ -1,50 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <RadioGroup
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Food" />
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Stone" />
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="Пища" />
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Wood" />
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="Камень" />
 
-        <RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="match_parent"
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gold" />
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="Дерево" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Золото" />
+        </LinearLayout>
     </RadioGroup>
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="129dp"
-        android:text="1.5x"
-
-        android:layout_marginStart="10dp"
-        android:textColor="#FFF"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:background="#1A5276"
-
-        android:textSize="30dp"/>
+        android:text="1.5x"
+        android:textColor="#FFF"
+        android:padding="2dp"
+        android:textSize="16sp" />
 
 
 </LinearLayout>

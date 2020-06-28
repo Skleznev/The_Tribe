@@ -1,6 +1,7 @@
 package com.skleznevco.thetribe.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,10 +51,26 @@ public class ResourceAdapter extends BaseAdapter {
             view = lInflater.inflate(R.layout.list_items_resources, parent, false);
         }
         if (position==0){
-            ((TextView) view.findViewById(R.id.positive_count)).setText("Доход");
-            ((TextView) view.findViewById(R.id.negative_count)).setText("Расход");
-            ((TextView) view.findViewById(R.id.total_count)).setText("Итого");
-            ((TextView) view.findViewById(R.id.resource_name)).setText("Ресурс");
+            TextView income = view.findViewById(R.id.positive_count);
+            income.setText("Доход");
+            income.setTextColor(Color.parseColor("#FFFFFF"));
+            income.setBackgroundColor(Color.parseColor("#1A5276"));
+
+            TextView expense = view.findViewById(R.id.negative_count);
+            expense.setText("Расход");
+            expense.setTextColor(Color.parseColor("#FFFFFF"));
+            expense.setBackgroundColor(Color.parseColor("#1A5276"));
+
+            TextView total = view.findViewById(R.id.total_count);
+            total.setText("Итого");
+            total.setTextColor(Color.parseColor("#FFFFFF"));
+            total.setBackgroundColor(Color.parseColor("#1A5276"));
+
+            TextView resource = view.findViewById(R.id.resource_name);
+            resource.setText("Ресурс");
+            resource.setTextColor(Color.parseColor("#FFFFFF"));
+            resource.setBackgroundColor(Color.parseColor("#1A5276"));
+
             return view;
         }
 
