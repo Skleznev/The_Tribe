@@ -58,4 +58,5 @@ public class Human{
         busy+=count;
         free-=count;
     }
+
 }

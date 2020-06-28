@@ -53,6 +53,11 @@ public class GameRules {
         GameRules.luckyChance = 0.5 + builds.getBuilding(Builds.BuildingType.CHURCH).getLevel() * 0.15;
     }
 
+    public static double getCoefLoyal(boolean good) {
+        if (good) return 1.0/2;
+        return -1.0/2;
+    }
+
     enum Difficulty {
         EASY, MEDIUM, HARD
     }

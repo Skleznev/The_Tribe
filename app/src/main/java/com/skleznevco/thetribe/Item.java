@@ -66,4 +66,8 @@ public class Item{
     public void addTotal(int parseInt) {
         total+=parseInt;
     }
+
+    public void setTotal(int i) {
+        this.total = i;
+    }
 }
