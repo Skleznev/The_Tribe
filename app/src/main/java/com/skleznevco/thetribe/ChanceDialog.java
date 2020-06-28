@@ -73,16 +73,20 @@ public class ChanceDialog extends DialogFragment {
                     break;
             }
         }
+        eventMessage += "\nНа ваше население напало ";
+        eventMessage += "\nВы отбили отаку ";
+        eventMessage += "\nВы потерпели поражение ";
+        eventMessage += "\nВаши потери составляют ";
 
-        return builder.setTitle("Диалоговое окно").setMessage(eventMessage).create();
+        return builder.setTitle("Отчет по оканчанию хода").setMessage(eventMessage).create();
     }
 
     private String itemEvent(Resource.ResourceType type, boolean good) {
         int delta = (int) (GameRules.getResource().getItem(type).getTotalInt() * GameRules.getCoefLoyal(good));
         GameRules.getResource().getItem(type).setTotal(GameRules.getResource().getItem(type).getTotalInt() + delta);
         GameRules.updateResourse();
-        if (good) return "\n +" + String.valueOf(delta) + " " + type.toString();
-        else return "\n " + String.valueOf(delta) + " " + type.toString();
+        if (good) return "\n +" + delta + " " + GameRules.typeToString(type);
+        else return "\n " + delta + " " + GameRules.typeToString(type);
 
     }
 
@@ -90,7 +94,7 @@ public class ChanceDialog extends DialogFragment {
         int delta = (int) (Integer.parseInt(GameRules.getResource().getHuman(type).getFree()) * GameRules.getCoefLoyal(good));
         GameRules.getResource().getHuman(type).addFree(delta);
         GameRules.updateResourse();
-        if (good) return "\n +" + String.valueOf(delta) + " " + type.toString();
-        else return "\n " + String.valueOf(delta) + " " + type.toString();
+        if (good) return "\n +" + delta + " " + GameRules.typeToString(type);
+        else return "\n " + delta + " " + GameRules.typeToString(type);
     }
 }

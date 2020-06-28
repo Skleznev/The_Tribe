@@ -2,6 +2,7 @@ package com.skleznevco.thetribe.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,15 @@ public class BuildingDialogAdapter extends BaseAdapter {
         if (line instanceof Item) {
             ((TextView) view.findViewById(R.id.positive_count)).setText(GameRules.typeToString((Resource.ResourceType.values()[position])));
             ((TextView) view.findViewById(R.id.negative_count)).setText(String.valueOf(building.getCostUpgrade(building.getLevel()).getItemCount(Resource.ResourceType.values()[position])));
-            ((TextView) view.findViewById(R.id.total_count)).setText(GameRules.getResource().getItem(Resource.ResourceType.values()[position]).getTotal());
+            TextView total = view.findViewById(R.id.total_count);
+            total.setText(GameRules.getResource().getItem(Resource.ResourceType.values()[position]).getTotal());
+
+            if (Integer.parseInt(GameRules.getResource().getItem(Resource.ResourceType.values()[position]).getTotal()) < building.getCostUpgrade(building.getLevel()).getItemCount(Resource.ResourceType.values()[position])){
+                total.setTextColor(Color.parseColor("#D72323"));
+            }
+            else {
+                total.setTextColor(Color.parseColor("#117864"));
+            }
         }
         ((ViewManager) (view.findViewById(R.id.resource_name)).getParent()).removeView((view.findViewById(R.id.resource_name)));
 
