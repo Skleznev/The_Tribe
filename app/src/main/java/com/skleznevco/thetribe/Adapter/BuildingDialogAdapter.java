@@ -6,13 +6,17 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.skleznevco.thetribe.Building;
 import com.skleznevco.thetribe.Builds;
 import com.skleznevco.thetribe.GameRules;
+import com.skleznevco.thetribe.Human;
+import com.skleznevco.thetribe.Item;
 import com.skleznevco.thetribe.R;
+import com.skleznevco.thetribe.Resource;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -30,12 +34,12 @@ public class BuildingDialogAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return GameRules.getResource().getItem(Resource.ResourceType.values()[position]);
     }
 
     @Override
@@ -48,15 +52,16 @@ public class BuildingDialogAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.item_buid_dialog, parent, false);
+            view = lInflater.inflate(R.layout.list_items_resources, parent, false);
         }
-        TextView textView = view.findViewById(R.id.build_cost);
-        TextView textLevel = view.findViewById(R.id.build_level);
-        textView.setText(building.getCostUpgrade(position).toString());
-        if (position<building.getLevel()){
-            textLevel.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        Object line = getItem(position);
+        if (line instanceof Item){
+            ((TextView) view.findViewById(R.id.positive_count)).setText(GameRules.typeToString((Resource.ResourceType.values()[position])));
+            ((TextView) view.findViewById(R.id.negative_count)).setText(String.valueOf(building.getCostUpgrade(building.getLevel()).getItemCount(Resource.ResourceType.values()[position])));
+            ((TextView) view.findViewById(R.id.total_count)).setText(GameRules.getResource().getItem(Resource.ResourceType.values()[position]).getTotal());
         }
+        ((ViewManager)(view.findViewById(R.id.resource_name)).getParent()).removeView((view.findViewById(R.id.resource_name)));
 
-        return  view;
+        return view;
     }
 }

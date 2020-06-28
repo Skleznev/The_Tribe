@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,8 +38,8 @@ public class BuildingDialog extends Dialog {
         BuildingDialogAdapter adapter = new BuildingDialogAdapter(context, type);
         final TextView textView = layout.findViewById(R.id.build_name);
         textView.setText(building.getName());
-        GridView gridView = layout.findViewById(R.id.dialog_grid_builds);
-        gridView.setAdapter(adapter);
+        ListView listCost = layout.findViewById(R.id.list_cost);
+        listCost.setAdapter(adapter);
 
         Button button = layout.findViewById(R.id.upgrade);
 
