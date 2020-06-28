@@ -8,6 +8,7 @@
         android:id="@+id/war_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         android:text="00"/>
 
     <TextView
@@ -15,5 +16,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        android:visibility="invisible"
         android:text="__"/>
 </LinearLayout>

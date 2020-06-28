@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.skleznevco.thetribe.GameRules;
 import com.skleznevco.thetribe.R;
 
 public class WarAdapter extends BaseAdapter {
@@ -40,10 +42,21 @@ public class WarAdapter extends BaseAdapter {
         if (view == null) {
             view = lInflater.inflate(R.layout.war_items, parent, false);
         }
+        TextView textCount= view.findViewById(R.id.war_count);
+        TextView textColor= view.findViewById(R.id.war_color);
+
+        if (position==turn){
+            textCount.setVisibility(View.VISIBLE);
+            textColor.setVisibility(View.VISIBLE);
+            textCount.setText(String.valueOf(GameRules.getCountEnemy()));
+        }
+
+
         return view;
     }
 
     public void addTurn(){
-
+        turn ++;
+        notifyDataSetChanged();
     }
 }

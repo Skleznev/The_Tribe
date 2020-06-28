@@ -1,5 +1,7 @@
 package com.skleznevco.thetribe;
 
+import java.util.Random;
+
 public class GameRules {
     private static boolean workDay;
     private static int workDayCD;
@@ -7,13 +9,15 @@ public class GameRules {
     static private Resource resource;
     static private Builds builds;
     static ResourceInterface resourceInterface;
-    static Integer eventChance = 50;
+    static int eventChance;
+    static int turn;
 
 
     public GameRules(Difficulty gameDifficulty, ResourceInterface resourceInterface) {
 
         this.resourceInterface = resourceInterface;
         this.gameDifficulty = gameDifficulty;
+        this.eventChance =50;
         resource = new Resource(getGameDifficulty());
         builds = new Builds(getGameDifficulty());
 
@@ -67,6 +71,10 @@ public class GameRules {
     public static void activateWorkDay() {
         workDay = true;
         workDayCD = 3;
+    }
+
+    public static int getCountEnemy() {
+        return new Random().nextInt(5)*turn;
     }
 
     enum Difficulty {
@@ -129,6 +137,7 @@ public class GameRules {
 
     public static void makeTurn() {
         workDayCD-=1;
+        turn++;
         for (Resource.ResourceType type : Resource.ResourceType.values()) {
             if (type.ordinal() < 4)
                 resource.getItem(type).calculateTotal();

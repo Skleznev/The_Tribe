@@ -105,7 +105,7 @@ public class GameActivity extends AppCompatActivity {
 
                 ChanceDialog dialog = new ChanceDialog();
                 dialog.show(getSupportFragmentManager(), "custom");
-
+                warAdapter.addTurn();
                 resourceAdapter.notifyDataSetChanged();
             }
         });

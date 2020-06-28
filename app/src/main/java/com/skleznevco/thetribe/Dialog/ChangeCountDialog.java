@@ -80,6 +80,9 @@ private void initialView(){
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             count = String.valueOf(progress);
+            if (count.length()<2){
+                count="0".concat(count);
+            }
             textView.setText(count);
         }
 
