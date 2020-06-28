@@ -13,9 +13,11 @@ public class GameRules {
     static ResourceInterface resourceInterface;
     static int eventChance;
     static int turn;
-    static public int delta;
+    static int delta;
+    static int prisonerTurn;
     static Resource.ResourceType powerType;
     static int countEnemy;
+    static int prisonerCount;
     static boolean winBattle;
 
     public GameRules(Difficulty gameDifficulty, ResourceInterface resourceInterface) {
@@ -125,6 +127,16 @@ public class GameRules {
         return builds.getBuilding(Builds.BuildingType.TOWER).getLevel()==3;
     }
 
+    public static int getPrisonerCount() {
+        return prisonerCount;
+    }
+    static void addPrisoner(int count){
+        prisonerCount+=count;
+    }
+    static void minusPrisoner(int count){
+        prisonerCount-=count;
+    }
+
     enum Difficulty {
         EASY, MEDIUM, HARD
     }
@@ -220,7 +232,16 @@ public class GameRules {
 
     private static void calculateBattle() {
         delta = Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getBusy())-countEnemy;
-        if (delta >= 0) winBattle=true;
+        if (delta >= 0) {
+            double coef = 0;
+            if (builds.getBuilding(Builds.BuildingType.JAIL).getLevel()==0) coef=0;
+            if (builds.getBuilding(Builds.BuildingType.JAIL).getLevel()==1) coef=0.5;
+            if (builds.getBuilding(Builds.BuildingType.JAIL).getLevel()==2) coef=0.75;
+            if (builds.getBuilding(Builds.BuildingType.JAIL).getLevel()==3) coef=1;
+            prisonerTurn=(int)(countEnemy*coef);
+            addPrisoner(prisonerTurn);
+            winBattle=true;
+        }
         else{
             if(Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal())>-delta){
                 resource.getHuman(Resource.ResourceType.MILITARY).setTotal(Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal())+delta);
@@ -247,6 +268,14 @@ public class GameRules {
     }
 
     public static void addHuman(Resource.ResourceType type, int count) {
+        if (type ==Resource.ResourceType.WOOD){
+            Payment cost = new Payment(0, 0, 0, count * 20);
+            if (canPay(cost)) {
+                pay(cost);
+                resource.getHuman(Resource.ResourceType.WORKERS).addFree(count);
+                minusPrisoner(count);
+            }
+        }
         if (type == Resource.ResourceType.MILITARY) {
             int coef;
             if (builds.getBuilding(Builds.BuildingType.BARRACKS).getLevel() > 1) coef = 20;
@@ -258,7 +287,7 @@ public class GameRules {
                 resource.getHuman(Resource.ResourceType.WORKERS).minusFree(count);
             }
         }
-        else {
+        if (type == Resource.ResourceType.WORKERS) {
             Payment cost = new Payment(0, 0, 0, count * 50);
             if (canPay(cost)) {
                 pay(cost);

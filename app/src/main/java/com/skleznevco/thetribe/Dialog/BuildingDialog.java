@@ -151,6 +151,39 @@ public class BuildingDialog extends Dialog {
             case JAIL:
                 description.setText(context.getString(R.string.description_jail));
                 buildLayout.addView(factory.inflate(R.layout.jail_layout, null));
+                final TextView JL_text = buildLayout.findViewById(R.id.JL_text);
+                Button JL_button = buildLayout.findViewById(R.id.JL_button);
+                SeekBar JL_seekbar = buildLayout.findViewById(R.id.JL_seekbar);
+                JL_seekbar.setMax(GameRules.getPrisonerCount());
+
+                if(building.getLevel()==0) {
+                    JL_button.setEnabled(false);
+                    JL_button.setBackgroundColor(Color.parseColor("#D72323"));
+                }
+
+                JL_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        JL_text.setText(String.valueOf(progress));
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                JL_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GameRules.addHuman(WOOD, Integer.parseInt(JL_text.getText().toString()));
+                        cancel();
+                    }
+                });
                 break;
             case POWER:
                 description.setText(context.getString(R.string.description_power));

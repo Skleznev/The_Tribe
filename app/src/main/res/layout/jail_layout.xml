@@ -6,6 +6,7 @@
 
 
     <TextView
+        android:id="@+id/JL_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2"
@@ -16,11 +17,13 @@
         android:textStyle="bold" />
 
     <SeekBar
+        android:id="@+id/JL_seekbar"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_weight="6" />
 
     <Button
+        android:id="@+id/JL_button"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_weight="1"

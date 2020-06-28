@@ -74,7 +74,10 @@ public class ChanceDialog extends DialogFragment {
             }
         }
         eventMessage += "\nНа ваше население напало " + GameRules.getCountEnemy() + " врагов";
-        if(GameRules.isWinBattle()) eventMessage += "\nВы отбили атаку!";
+        if(GameRules.isWinBattle()) {
+            eventMessage += "\nВы отбили атаку!";
+            eventMessage += "\nВы пленили " + GameRules.prisonerTurn +" врагов";
+        }
         else {
             eventMessage += "\nВы потерпели поражение!";
             eventMessage += "\nВаши потери составляют " + GameRules.delta + " поселенцев";
