@@ -73,10 +73,13 @@ public class ChanceDialog extends DialogFragment {
                     break;
             }
         }
-        eventMessage += "\nНа ваше население напало ";
-        eventMessage += "\nВы отбили отаку ";
-        eventMessage += "\nВы потерпели поражение ";
-        eventMessage += "\nВаши потери составляют ";
+        eventMessage += "\nНа ваше население напало " + GameRules.getCountEnemy() + " врагов";
+        if(GameRules.isWinBattle()) eventMessage += "\nВы отбили атаку!";
+        else {
+            eventMessage += "\nВы потерпели поражение!";
+            eventMessage += "\nВаши потери составляют " + GameRules.delta + " поселенцев";
+        }
+
 
         return builder.setTitle("Отчет по оканчанию хода").setMessage(eventMessage).create();
     }

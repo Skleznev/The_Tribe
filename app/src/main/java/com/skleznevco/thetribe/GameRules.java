@@ -1,5 +1,7 @@
 package com.skleznevco.thetribe;
 
+import android.widget.Toast;
+
 import java.util.Random;
 
 public class GameRules {
@@ -11,12 +13,13 @@ public class GameRules {
     static ResourceInterface resourceInterface;
     static int eventChance;
     static int turn;
+    static public int delta;
     static Resource.ResourceType powerType;
     static int countEnemy;
     static boolean winBattle;
 
     public GameRules(Difficulty gameDifficulty, ResourceInterface resourceInterface) {
-
+        turn = 0;
         this.resourceInterface = resourceInterface;
         this.gameDifficulty = gameDifficulty;
         this.eventChance = 50;
@@ -169,7 +172,9 @@ public class GameRules {
                 return coef * resource.getPopulation() + calculateService(type);
             }
             case GOLD: {
-                int coef = 20;
+                int coef;
+                if (builds.getBuilding(Builds.BuildingType.BARRACKS).getLevel()==3) coef=0;
+                else coef = 20;
                 return coef * Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal()) + calculateService(type);
             }
             case STONE: {
@@ -193,11 +198,14 @@ public class GameRules {
 
 
     public static void makeTurn() {
+        if (turn>=48) resourceInterface.theEnd();
         workDayCD -= 1;
         turn++;
         for (Resource.ResourceType type : Resource.ResourceType.values()) {
-            if (type.ordinal() < 4)
+            if (type.ordinal() < 4){
                 resource.getItem(type).calculateTotal();
+                if (resource.getItem(type).getTotalInt()<0) resourceInterface.theEnd();
+            }
         }
 
         for (Resource.ResourceType type : Resource.ResourceType.values()) {
@@ -211,7 +219,7 @@ public class GameRules {
     }
 
     private static void calculateBattle() {
-        int delta = Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getBusy())-countEnemy;
+        delta = Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getBusy())-countEnemy;
         if (delta >= 0) winBattle=true;
         else{
             if(Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal())>-delta){
@@ -225,6 +233,10 @@ public class GameRules {
                     resource.getItem(Resource.ResourceType.values()[i]).setCountWorkers(0);
                     resourceInterface.update();
                 }
+                else{
+                    resourceInterface.theEnd();
+
+                }
             }
             winBattle=false;
         }
@@ -235,12 +247,22 @@ public class GameRules {
     }
 
     public static void addHuman(Resource.ResourceType type, int count) {
-        Payment cost = new Payment(0, 0, 0, count * 50);
-        if (canPay(cost)) {
-            pay(cost);
-            resource.getHuman(type).addFree(count);
-            if (type == Resource.ResourceType.MILITARY) {
+        if (type == Resource.ResourceType.MILITARY) {
+            int coef;
+            if (builds.getBuilding(Builds.BuildingType.BARRACKS).getLevel() > 1) coef = 20;
+            else coef = 50;
+            Payment cost = new Payment(0, 0, 0, count * coef);
+            if (canPay(cost)) {
+                pay(cost);
+                resource.getHuman(type).addFree(count);
                 resource.getHuman(Resource.ResourceType.WORKERS).minusFree(count);
+            }
+        }
+        else {
+            Payment cost = new Payment(0, 0, 0, count * 50);
+            if (canPay(cost)) {
+                pay(cost);
+                resource.getHuman(type).addFree(count);
             }
         }
         updateResourse();

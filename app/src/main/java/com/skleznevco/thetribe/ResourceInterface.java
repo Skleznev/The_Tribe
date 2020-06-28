@@ -12,4 +12,6 @@ public interface ResourceInterface {
 
     void resetSheild();
 
+    void theEnd();
+
 }

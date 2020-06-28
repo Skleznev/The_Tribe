@@ -224,6 +224,11 @@ public class BuildingDialog extends Dialog {
                 SeekBar BR_seekbar = buildLayout.findViewById(R.id.BR_seekbar);
                 BR_seekbar.setMax(Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.WORKERS).getFree()));
 
+                if(building.getLevel()==0) {
+                    BR_button.setEnabled(false);
+                    BR_button.setBackgroundColor(Color.parseColor("#D72323"));
+                }
+
                 BR_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

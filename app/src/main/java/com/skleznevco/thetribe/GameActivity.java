@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -73,6 +74,14 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void resetSheild() {
                 shield.setText("00");
+            }
+
+            @Override
+            public void theEnd() {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Конец игры", Toast.LENGTH_LONG);
+                toast.show();
+                finish();
             }
 
         };
