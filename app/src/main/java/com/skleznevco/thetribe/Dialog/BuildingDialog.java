@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +28,10 @@ import com.skleznevco.thetribe.R;
 import com.skleznevco.thetribe.Resource;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static com.skleznevco.thetribe.Resource.ResourceType.FOOD;
+import static com.skleznevco.thetribe.Resource.ResourceType.GOLD;
+import static com.skleznevco.thetribe.Resource.ResourceType.STONE;
+import static com.skleznevco.thetribe.Resource.ResourceType.WOOD;
 
 public class BuildingDialog extends Dialog {
     @SuppressLint("ResourceType")
@@ -132,6 +138,36 @@ public class BuildingDialog extends Dialog {
                 break;
             case POWER:
                 buildLayout.addView(factory.inflate(R.layout.power_layout, null));
+                Button powerButton = buildLayout.findViewById(R.id.power_button);
+                final RadioGroup radioGroup = buildLayout.findViewById(R.id.radio);
+                if(building.getLevel()>0){
+                    powerButton.setText("Применить улучшение с множителем: " + String.valueOf(GameRules.getCoefPower(building.getLevel())) + "X");
+                    powerButton.setBackgroundColor(Color.parseColor("#117864"));
+                    powerButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                                switch (radioGroup.getCheckedRadioButtonId()){
+                                    case R.id.food_button:
+                                        GameRules.setPowerType(FOOD);
+                                        break;
+                                    case R.id.wood_button:
+                                        GameRules.setPowerType(WOOD);
+                                        break;
+                                    case R.id.stone_button:
+                                        GameRules.setPowerType(STONE);
+                                        break;
+                                    case R.id.gold_button:
+                                        GameRules.setPowerType(GOLD);
+                                }
+                                GameRules.updateResourse();
+                                cancel();
+                        }
+                    });
+                }
+                else {
+                    powerButton.setText("Мастерская не построенна");
+                    powerButton.setBackgroundColor(Color.parseColor("#D72323"));
+                }
                 break;
             case TOWER:
                 buildLayout.addView(factory.inflate(R.layout.tower_layout, null));

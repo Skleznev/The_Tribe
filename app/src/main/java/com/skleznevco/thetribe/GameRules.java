@@ -11,7 +11,7 @@ public class GameRules {
     static ResourceInterface resourceInterface;
     static int eventChance;
     static int turn;
-
+    static Resource.ResourceType powerType;
 
     public GameRules(Difficulty gameDifficulty, ResourceInterface resourceInterface) {
 
@@ -96,6 +96,23 @@ public class GameRules {
         return null;
     }
 
+    public static double getCoefPower(int level) {
+        switch (level){
+            case 1: return 1.5;
+            case 2: return 1.75;
+            case 3: return 2.0;
+        }
+        return 0;
+    }
+
+    public static void setPowerType(Resource.ResourceType type) {
+        powerType=type;
+    }
+
+    public static Resource.ResourceType getPowerType() {
+        return powerType;
+    }
+
     enum Difficulty {
         EASY, MEDIUM, HARD
     }
@@ -115,7 +132,10 @@ public class GameRules {
     static public Resource getResource() {
         for (Resource.ResourceType type : Resource.ResourceType.values()) {
             if (type.ordinal() < 4) {
-                resource.getItem(type).setPositive(calculatePositive(type));
+                if (type==powerType){
+                    resource.getItem(type).setPositive((int)(calculatePositive(type)*getCoefPower(builds.getBuilding(Builds.BuildingType.POWER).getLevel())));
+                }
+                else resource.getItem(type).setPositive(calculatePositive(type));
             }
         }
 

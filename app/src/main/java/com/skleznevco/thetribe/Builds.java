@@ -10,7 +10,6 @@ public class Builds {
         TOWER,
         POWER,
         THEATRE,
-        EMBASSY
     }
 
     private Building townHall;
@@ -21,7 +20,6 @@ public class Builds {
     private Building tower;
     private Building power;
     private Building theatre;
-    private Building embassy;
 
     public Builds(GameRules.Difficulty difficulty) {
         switch (difficulty) {
@@ -34,7 +32,6 @@ public class Builds {
                 tower = new Building(1, false, BuildingType.TOWER);
                 power = new Building(1, false, BuildingType.POWER);
                 theatre = new Building(0, false, BuildingType.THEATRE);
-                embassy = new Building(0, false, BuildingType.EMBASSY);
                 break;
             case MEDIUM:
                 townHall = new Building(1, true, BuildingType.TOWN_HALL);
@@ -78,8 +75,6 @@ public class Builds {
                 return power;
             case THEATRE:
                 return theatre;
-            case EMBASSY:
-                return embassy;
         }
         return null;
     }

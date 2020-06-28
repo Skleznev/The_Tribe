@@ -56,10 +56,6 @@ public class Building {
             case THEATRE:
                 name = "Театр";
                 img = R.drawable.theatre;
-                return;
-            case EMBASSY:
-                name = "Посольство";
-                img = R.drawable.people;
         }
     }
 

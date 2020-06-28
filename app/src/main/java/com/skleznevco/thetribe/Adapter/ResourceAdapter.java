@@ -77,7 +77,14 @@ public class ResourceAdapter extends BaseAdapter {
 
         Object line = getItem(position - 1);
         if (line instanceof Item) {
-            ((TextView) view.findViewById(R.id.positive_count)).setText(((Item) line).getPositive());
+            TextView positiveText = view.findViewById(R.id.positive_count);
+            positiveText.setText(((Item) line).getPositive());
+            if (Resource.ResourceType.values()[position-1]==GameRules.getPowerType()) {
+                positiveText.setTextColor((Color.parseColor("#117864")));
+            }
+                else {
+                    positiveText.setTextColor(Color.parseColor("#1A5276"));
+            }
             ((TextView) view.findViewById(R.id.negative_count)).setText(((Item) line).getNegative());
             ((TextView) view.findViewById(R.id.total_count)).setText(((Item) line).getTotal());
         } else {
