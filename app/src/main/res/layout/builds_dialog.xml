@@ -14,8 +14,9 @@
         android:gravity="center"
         android:padding="10dp"
         android:textColor="#1A5276"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
+        android:layout_marginTop="-10dp"
         tools:text="Name" />
 
     <LinearLayout
@@ -26,7 +27,11 @@
         <TextView
             android:layout_width="158dp"
             android:layout_height="wrap_content"
-            android:text="Описание:\n\n\n\nУровень1:\nУровень2:\nУровень3:"></TextView>
+            android:text="Описание:"
+            android:textSize="16sp"
+            android:textColor="#1A5276">
+
+        </TextView>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,6 +41,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:background="#1A5276"
+                android:textColor="#FFF"
                 android:text="Уровень1">
 
             </TextView>
@@ -43,7 +52,7 @@
             <ListView
                 android:id="@+id/list_cost"
                 android:layout_width="234dp"
-                android:layout_height="139dp">
+                android:layout_height="100dp">
 
             </ListView>
 
