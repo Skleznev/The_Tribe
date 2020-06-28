@@ -10,4 +10,6 @@ public interface ResourceInterface {
 
     double getLoyalty();
 
+    void resetSheild();
+
 }

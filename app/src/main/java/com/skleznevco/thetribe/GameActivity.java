@@ -29,6 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private ResourceInterface resourceInterface;
     private ProgressBar progressBar;
     private Context context;
+    private Button shield;
 
     private GameRules.Difficulty gameDifficulty;
 
@@ -49,6 +50,8 @@ public class GameActivity extends AppCompatActivity {
             public void update() {
                 resourceAdapter.update();
                 buildAdapter.notifyDataSetChanged();
+                workAdapter.update();
+
             }
 
             @Override
@@ -66,6 +69,12 @@ public class GameActivity extends AppCompatActivity {
             public double getLoyalty() {
                 return progressBar.getProgress() * 0.01;
             }
+
+            @Override
+            public void resetSheild() {
+                shield.setText("00");
+            }
+
         };
         gameRules = new GameRules(gameDifficulty, resourceInterface);
         resourceAdapter = new ResourceAdapter(this);
@@ -107,7 +116,7 @@ public class GameActivity extends AppCompatActivity {
                 resourceAdapter.notifyDataSetChanged();
             }
         });
-        final Button shield = findViewById(R.id.shield);
+        shield = findViewById(R.id.shield);
         shield.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

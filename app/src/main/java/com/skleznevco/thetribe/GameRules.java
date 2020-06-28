@@ -12,6 +12,8 @@ public class GameRules {
     static int eventChance;
     static int turn;
     static Resource.ResourceType powerType;
+    static int countEnemy;
+    static boolean winBattle;
 
     public GameRules(Difficulty gameDifficulty, ResourceInterface resourceInterface) {
 
@@ -73,8 +75,11 @@ public class GameRules {
         workDayCD = 3;
     }
 
+    public static void newCountEnemy() {
+        countEnemy = (int) ((new Random().nextInt(50)+50)*0.01 * turn);
+    }
     public static int getCountEnemy() {
-        return new Random().nextInt(5) * turn;
+        return countEnemy;
     }
 
     public static String typeToString(Resource.ResourceType type) {
@@ -111,6 +116,10 @@ public class GameRules {
 
     public static Resource.ResourceType getPowerType() {
         return powerType;
+    }
+
+    public static boolean isVision() {
+        return builds.getBuilding(Builds.BuildingType.TOWER).getLevel()==3;
     }
 
     enum Difficulty {
@@ -197,6 +206,32 @@ public class GameRules {
                 resource.getItem(type).setNegative(calculateNegative(type));
             }
         }
+        calculateBattle();
+        newCountEnemy();
+    }
+
+    private static void calculateBattle() {
+        int delta = Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getBusy())-countEnemy;
+        if (delta >= 0) winBattle=true;
+        else{
+            if(Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal())>-delta){
+                resource.getHuman(Resource.ResourceType.MILITARY).setTotal(Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal())+delta);
+                resourceInterface.resetSheild();
+            }
+            else{
+                if(Integer.parseInt(resource.getHuman(Resource.ResourceType.WORKERS).getTotal())>-delta){
+                    resource.getHuman(Resource.ResourceType.WORKERS).setTotal(Integer.parseInt(resource.getHuman(Resource.ResourceType.WORKERS).getTotal())+delta);
+                    for(int i=0; i<4;i++)
+                    resource.getItem(Resource.ResourceType.values()[i]).setCountWorkers(0);
+                    resourceInterface.update();
+                }
+            }
+            winBattle=false;
+        }
+    }
+
+    public static boolean isWinBattle() {
+        return winBattle;
     }
 
     public static void addHuman(Resource.ResourceType type, int count) {

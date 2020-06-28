@@ -105,6 +105,7 @@ public class WorkAdapter extends BaseAdapter {
                 text_count.setText(convertToString(position));
             }
         });
+        text_count.setText(convertToString(position));
         return view;
     }
 
@@ -119,10 +120,8 @@ public class WorkAdapter extends BaseAdapter {
         return String.valueOf(count);
     }
 
-    private interface WorkInterface {
-        void update(ResourceInterface resourceInterface);
+    public void update() {
+        notifyDataSetChanged();
 
-        void setContWorkers(int count);
     }
-
 }

@@ -1,6 +1,7 @@
 package com.skleznevco.thetribe.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +47,14 @@ public class WarAdapter extends BaseAdapter {
         TextView textColor = view.findViewById(R.id.war_color);
 
         if (position == turn) {
-            textCount.setVisibility(View.VISIBLE);
-            textColor.setVisibility(View.VISIBLE);
+            if(GameRules.isVision()) textCount.setVisibility(View.VISIBLE);
+
             textCount.setText(String.valueOf(GameRules.getCountEnemy()));
+        }
+        if (position+1 == turn) {
+            textCount.setVisibility(View.VISIBLE);
+            if(!GameRules.isWinBattle()) textColor.setBackgroundColor(Color.parseColor("#D72323"));
+            textColor.setVisibility(View.VISIBLE);
         }
 
 

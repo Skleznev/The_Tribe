@@ -12,6 +12,8 @@ public class Human {
 
     public void setTotal(int total) {
         this.total = total;
+        free=total;
+        busy=0;
     }
 
     public boolean incrementBusy() {
