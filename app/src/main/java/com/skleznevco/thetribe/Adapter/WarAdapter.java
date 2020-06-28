@@ -23,7 +23,7 @@ public class WarAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 40;
+        return 48;
     }
 
     @Override
