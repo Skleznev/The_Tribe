@@ -26,7 +26,10 @@
                 android:layout_height="match_parent"
                 android:textAlignment="center"
                 android:text="0"
-                android:textSize="16sp"/>
+
+                android:textStyle="bold"
+                android:textColor="#1A5276"
+                android:textSize="20sp"/>
         </LinearLayout>
 
 
@@ -53,7 +56,10 @@
                 android:layout_height="match_parent"
                 android:textAlignment="center"
                 android:text="0"
-                android:textSize="16sp"/>
+
+                android:textStyle="bold"
+                android:textColor="#1A5276"
+                android:textSize="20sp"/>
         </LinearLayout>
 
     </LinearLayout>

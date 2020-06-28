@@ -81,7 +81,7 @@ public class GameActivity extends AppCompatActivity {
 
         GridView gridWar = this.findViewById(R.id.grid_war);
         gridWar.setAdapter(warAdapter);
-        gridWar.setNumColumns(8);
+        gridWar.setNumColumns(7);
 
         GridView gridBuilds = this.findViewById(R.id.grid_builds);
         gridBuilds.setAdapter(buildAdapter);
