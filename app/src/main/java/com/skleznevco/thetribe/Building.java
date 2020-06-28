@@ -80,7 +80,7 @@ public class Building {
 
     public Payment getCostService() {
 
-        return costService;
+        return costService.multiply(getLevel());
     }
 
     public Payment getCostUpgrade(int coefficient) {
