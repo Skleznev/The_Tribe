@@ -34,12 +34,16 @@ import static com.skleznevco.thetribe.Resource.ResourceType.STONE;
 import static com.skleznevco.thetribe.Resource.ResourceType.WOOD;
 
 public class BuildingDialog extends Dialog {
+    private Context context;
+
+
     @SuppressLint("ResourceType")
     public BuildingDialog(@NonNull Context context, Builds.BuildingType type) {
         super(context);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         final Building building = GameRules.getBuilds().getBuilding(type);
         View layout = inflater.inflate(R.layout.builds_dialog, null);
+        this.context = context;
 
         BuildingDialogAdapter adapter = new BuildingDialogAdapter(context, type);
         final TextView textView = layout.findViewById(R.id.build_name);
@@ -69,8 +73,19 @@ public class BuildingDialog extends Dialog {
         LayoutInflater factory = LayoutInflater.from(layout.getContext());
         LinearLayout buildLayout = layout.findViewById(R.id.build_layout);
 
+        TextView description = layout.findViewById(R.id.description);
+        TextView level = layout.findViewById(R.id.level);
+
+        if(building.getLevel() == 0){
+            level.setText("Здание не построенно");
+        }
+        else {
+            level.setText("Уровень " + building.getLevel());
+        }
+
         switch (type) {
             case FAIR:
+                description.setText(context.getString(R.string.description_fair));
                 buildLayout.addView(factory.inflate(R.layout.fair_layout, null));
                 final SeekBar FR_seekbar = buildLayout.findViewById(R.id.FR_seekbar);
                 final TextView FR_text_left = buildLayout.findViewById(R.id.FR_text_left);
@@ -134,9 +149,11 @@ public class BuildingDialog extends Dialog {
                 });
                 break;
             case JAIL:
+                description.setText(context.getString(R.string.description_jail));
                 buildLayout.addView(factory.inflate(R.layout.jail_layout, null));
                 break;
             case POWER:
+                description.setText(context.getString(R.string.description_power));
                 buildLayout.addView(factory.inflate(R.layout.power_layout, null));
                 Button powerButton = buildLayout.findViewById(R.id.power_button);
                 final RadioGroup radioGroup = buildLayout.findViewById(R.id.radio);
@@ -170,14 +187,17 @@ public class BuildingDialog extends Dialog {
                 }
                 break;
             case TOWER:
+                description.setText(context.getString(R.string.description_tower));
                 buildLayout.addView(factory.inflate(R.layout.tower_layout, null));
                 break;
             case CHURCH:
+                description.setText(context.getString(R.string.description_church));
                 buildLayout.addView(factory.inflate(R.layout.church_layout, null));
                 TextView luckyText = buildLayout.findViewById(R.id.luckyText);
                 luckyText.setText("Текущий множитель удачи: " + GameRules.getLuckyChance() + "%");
                 break;
             case THEATRE:
+                description.setText(context.getString(R.string.description_theatre));
                 buildLayout.addView(factory.inflate(R.layout.theatre_layout, null));
                 final TextView loyaltyText = buildLayout.findViewById(R.id.loyaltyText);
                 loyaltyText.setText("Текущий множитель лояльности: " + GameRules.getloyalty() + "%");
@@ -197,6 +217,7 @@ public class BuildingDialog extends Dialog {
 
                 break;
             case BARRACKS:
+                description.setText(context.getString(R.string.description_baracs));
                 buildLayout.addView(factory.inflate(R.layout.baracs_layout, null));
                 final TextView BR_text = buildLayout.findViewById(R.id.BR_text);
                 Button BR_button = buildLayout.findViewById(R.id.BR_button);
@@ -228,6 +249,7 @@ public class BuildingDialog extends Dialog {
                 });
                 break;
             case TOWN_HALL:
+                description.setText(context.getString(R.string.description_townhall));
                 buildLayout.addView(factory.inflate(R.layout.town_hall_layout, null));
                 final TextView TH_text = buildLayout.findViewById(R.id.TH_text);
                 Button TH_button = buildLayout.findViewById(R.id.TH_button);
@@ -271,3 +293,4 @@ public class BuildingDialog extends Dialog {
 
     }
 }
+
