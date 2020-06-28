@@ -77,6 +77,19 @@ public class GameRules {
         return new Random().nextInt(5)*turn;
     }
 
+    public static String typeToString(Resource.ResourceType type) {
+        switch (type){
+            case FOOD: return "Пища";
+            case STONE:return "Камень";
+            case WOOD: return "Дерево";
+            case GOLD: return "Золото";
+            case WORKERS:return "Рабочие";
+            case MILITARY:return "Военные";
+
+        }
+        return null;
+    }
+
     enum Difficulty {
         EASY, MEDIUM, HARD
     }

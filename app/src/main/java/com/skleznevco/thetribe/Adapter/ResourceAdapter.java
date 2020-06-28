@@ -27,7 +27,7 @@ public class ResourceAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 6;
+        return 7;
     }
 
     @Override
@@ -49,7 +49,15 @@ public class ResourceAdapter extends BaseAdapter {
         if (view == null) {
             view = lInflater.inflate(R.layout.list_items_resources, parent, false);
         }
-        Object line = getItem(position);
+        if (position==0){
+            ((TextView) view.findViewById(R.id.positive_count)).setText("Доход");
+            ((TextView) view.findViewById(R.id.negative_count)).setText("Расход");
+            ((TextView) view.findViewById(R.id.total_count)).setText("Итого");
+            ((TextView) view.findViewById(R.id.resource_name)).setText("Ресурс");
+            return view;
+        }
+
+        Object line = getItem(position-1);
         if (line instanceof Item){
             ((TextView) view.findViewById(R.id.positive_count)).setText(((Item) line).getPositive());
             ((TextView) view.findViewById(R.id.negative_count)).setText(((Item) line).getNegative());
@@ -61,7 +69,7 @@ public class ResourceAdapter extends BaseAdapter {
             ((TextView) view.findViewById(R.id.total_count)).setText(((Human)line).getTotal());
         }
 
-        ((TextView) view.findViewById(R.id.resource_name)).setText(String.valueOf(Resource.ResourceType.values()[position]));
+        ((TextView) view.findViewById(R.id.resource_name)).setText(GameRules.typeToString((Resource.ResourceType.values()[position-1])));
 
         return view;
     }
