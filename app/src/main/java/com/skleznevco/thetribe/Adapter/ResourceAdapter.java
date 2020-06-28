@@ -20,7 +20,7 @@ public class ResourceAdapter extends BaseAdapter {
     Resource resource;
 
 
-    public ResourceAdapter(Context context){
+    public ResourceAdapter(Context context) {
         this.context = context;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         resource = GameRules.getResource();
@@ -39,6 +39,7 @@ public class ResourceAdapter extends BaseAdapter {
 
         return resource.getHuman(Resource.ResourceType.values()[type]);
     }
+
     @Override
     public long getItemId(int position) {
         return position;
@@ -46,11 +47,11 @@ public class ResourceAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-            View view = convertView;
+        View view = convertView;
         if (view == null) {
             view = lInflater.inflate(R.layout.list_items_resources, parent, false);
         }
-        if (position==0){
+        if (position == 0) {
             TextView income = view.findViewById(R.id.positive_count);
             income.setText("Доход");
             income.setTextColor(Color.parseColor("#FFFFFF"));
@@ -74,25 +75,24 @@ public class ResourceAdapter extends BaseAdapter {
             return view;
         }
 
-        Object line = getItem(position-1);
-        if (line instanceof Item){
+        Object line = getItem(position - 1);
+        if (line instanceof Item) {
             ((TextView) view.findViewById(R.id.positive_count)).setText(((Item) line).getPositive());
             ((TextView) view.findViewById(R.id.negative_count)).setText(((Item) line).getNegative());
             ((TextView) view.findViewById(R.id.total_count)).setText(((Item) line).getTotal());
-        }
-        else{
-            ((TextView) view.findViewById(R.id.positive_count)).setText(((Human)line).getFree());
-            ((TextView) view.findViewById(R.id.negative_count)).setText(((Human)line).getBusy());
-            ((TextView) view.findViewById(R.id.total_count)).setText(((Human)line).getTotal());
+        } else {
+            ((TextView) view.findViewById(R.id.positive_count)).setText(((Human) line).getFree());
+            ((TextView) view.findViewById(R.id.negative_count)).setText(((Human) line).getBusy());
+            ((TextView) view.findViewById(R.id.total_count)).setText(((Human) line).getTotal());
         }
 
-        ((TextView) view.findViewById(R.id.resource_name)).setText(GameRules.typeToString((Resource.ResourceType.values()[position-1])));
+        ((TextView) view.findViewById(R.id.resource_name)).setText(GameRules.typeToString((Resource.ResourceType.values()[position - 1])));
 
         return view;
     }
 
     public void update() {
-        resource=GameRules.getResource();
+        resource = GameRules.getResource();
         notifyDataSetChanged();
     }
 }
