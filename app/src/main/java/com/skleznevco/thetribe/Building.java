@@ -1,5 +1,7 @@
 package com.skleznevco.thetribe;
 
+import java.util.Random;
+
 public class Building {
     private int level = 0;
     private Payment costUpgrade;
@@ -11,10 +13,12 @@ public class Building {
         this.level = level;
         createBuilding(type);
         if (random) {
-
+            Random rand = new Random();
+            costService = new Payment(rand.nextInt(3)+1, rand.nextInt(4)+3, rand.nextInt(5)+2, rand.nextInt(3)+1);
+            costUpgrade = new Payment(rand.nextInt(30)+10, rand.nextInt(40)+30, rand.nextInt(50)+20, rand.nextInt(30)+15);
         } else {
-            costService = new Payment(1, 1, 1, 1);
-            costUpgrade = new Payment(20, 10, 15, 5);
+            costService = new Payment(4, 7, 8, 4);
+            costUpgrade = new Payment(40, 70, 80, 45);
         }
 
     }

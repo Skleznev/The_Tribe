@@ -36,14 +36,14 @@ public class Builds {
                 embassy = new Building(0, false, BuildingType.EMBASSY);
                 break;
             case MEDIUM:
-                townHall = new Building(1,false, BuildingType.TOWN_HALL);
-                barracks = new Building(0 ,false, BuildingType.BARRACKS);
-                jail = new Building(0,false, BuildingType.JAIL);
-                fair = new Building(1,false, BuildingType.FAIR);
-                church = new Building(0, false, BuildingType.CHURCH);
-                tower = new Building (1,false, BuildingType.TOWER);
-                power = new Building(1,false, BuildingType.POWER);
-                theatre = new Building(0, false, BuildingType.THEATRE);
+                townHall = new Building(1,true, BuildingType.TOWN_HALL);
+                barracks = new Building(0 ,true, BuildingType.BARRACKS);
+                jail = new Building(0,true, BuildingType.JAIL);
+                fair = new Building(1,true, BuildingType.FAIR);
+                church = new Building(0, true, BuildingType.CHURCH);
+                tower = new Building (1,true, BuildingType.TOWER);
+                power = new Building(1,true, BuildingType.POWER);
+                theatre = new Building(0, true, BuildingType.THEATRE);
                 break;
             case HARD:
                 townHall = new Building(1,false, BuildingType.TOWN_HALL);

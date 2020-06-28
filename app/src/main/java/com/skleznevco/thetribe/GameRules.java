@@ -28,7 +28,7 @@ public class GameRules {
 
         for (Resource.ResourceType type : Resource.ResourceType.values()) {
             if (type == Resource.ResourceType.WORKERS) return;
-            resource.getItem(type).setNegative(payment.getItemCount(type));
+            resource.getItem(type).setTotal(resource.getItem(type).getTotalInt() - payment.getItemCount(type));
         }
 
     }
@@ -133,11 +133,14 @@ public class GameRules {
     }
 
     public static void addHuman(Resource.ResourceType type, int count) {
-        resource.getHuman(type).addFree(count);
-        if (type == Resource.ResourceType.MILITARY) {
-            resource.getHuman(Resource.ResourceType.WORKERS).minusFree(count);
+        Payment cost = new Payment(0,0,0,count*20);
+        if (canPay(cost)) {
+            pay(cost);
+            resource.getHuman(type).addFree(count);
+            if (type == Resource.ResourceType.MILITARY) {
+                resource.getHuman(Resource.ResourceType.WORKERS).minusFree(count);
+            }
         }
-        resource.getItem(Resource.ResourceType.GOLD).addNegative(count * 20);
         updateResourse();
 
     }
