@@ -217,10 +217,10 @@ public class GameRules {
     }
 
     public static Resource.ResourceType stringToType(String word) {
-        if (word.equals("Gold")) return Resource.ResourceType.GOLD;
-        if (word.equals("Food")) return Resource.ResourceType.FOOD;
-        if (word.equals("Wood")) return Resource.ResourceType.WOOD;
-        if (word.equals("Stone")) return Resource.ResourceType.STONE;
+        if (word.equals("Gold") || word.equals("Золото")) return Resource.ResourceType.GOLD;
+        if (word.equals("Food") || word.equals("Пища")) return Resource.ResourceType.FOOD;
+        if (word.equals("Wood") || word.equals("Дерево")) return Resource.ResourceType.WOOD;
+        if (word.equals("Stone") || word.equals("Камень")) return Resource.ResourceType.STONE;
         return null;
 
     }

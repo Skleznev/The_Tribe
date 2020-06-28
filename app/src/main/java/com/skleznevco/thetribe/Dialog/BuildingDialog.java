@@ -97,7 +97,7 @@ public class BuildingDialog extends Dialog {
                 if (GameRules.getBuilds().getBuilding(Builds.BuildingType.FAIR).getLevel() == 0)
                     FR_button.setEnabled(false);
 
-                ArrayAdapter<String> FR_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, new String[]{"Food", "Stone", "Wood", "Gold"});
+                ArrayAdapter<String> FR_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, new String[]{"Пища", "Камень", "Дерево", "Золото"});
                 FR_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 FR_spinner_left.setAdapter(FR_adapter);
                 FR_spinner_left.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
