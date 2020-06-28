@@ -42,7 +42,7 @@ public class BuildingDialog extends Dialog {
 
         Button button = layout.findViewById(R.id.upgrade);
 
-        if (GameRules.canPay(building.getCostUpgrade(building.getLevel() + 1)) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
+        if (GameRules.canPay(building.getCostUpgrade(building.getLevel())) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
             button.setBackgroundColor(Color.parseColor("#117864"));
         } else {
             button.setBackgroundColor(Color.parseColor("#D72323"));
@@ -51,7 +51,7 @@ public class BuildingDialog extends Dialog {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (GameRules.canPay(building.getCostUpgrade(building.getLevel()+1)) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
+                if (GameRules.canPay(building.getCostUpgrade(building.getLevel())) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
                     building.levelUp();
                     GameRules.updateResourse();
                     cancel();
@@ -142,6 +142,22 @@ public class BuildingDialog extends Dialog {
                 break;
             case THEATRE:
                 buildLayout.addView(factory.inflate(R.layout.theatre_layout, null));
+                final TextView loyaltyText = buildLayout.findViewById(R.id.loyaltyText);
+                loyaltyText.setText("Текущий множитель лояльности: " + GameRules.getloyalty() + "%");
+
+                Button workButton= buildLayout.findViewById(R.id.workButton);
+                if(building.getLevel()==3&&GameRules.getWorkDayCD()<1){
+                    workButton.setBackgroundColor(Color.parseColor("#117864"));
+                    workButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            loyaltyText.setText("Текущий множитель лояльности: " + 100 + "%");
+                            GameRules.activateWorkDay();
+                        }
+                    });
+                }
+                else workButton.setBackgroundColor(Color.parseColor("#D72323"));
+
                 break;
             case BARRACKS:
                 buildLayout.addView(factory.inflate(R.layout.baracs_layout, null));

@@ -84,7 +84,7 @@ public class Building {
     }
 
     public Payment getCostUpgrade(int coefficient) {
-        return costUpgrade.multiply(coefficient);
+        return costUpgrade.multiply(coefficient+1);
     }
 
     public String getName() {

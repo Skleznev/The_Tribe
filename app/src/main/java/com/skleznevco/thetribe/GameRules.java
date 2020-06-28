@@ -1,6 +1,8 @@
 package com.skleznevco.thetribe;
 
 public class GameRules {
+    private static boolean workDay;
+    private static int workDayCD;
     private Difficulty gameDifficulty;
     static private Resource resource;
     static private Builds builds;
@@ -32,6 +34,10 @@ public class GameRules {
 
     }
 
+    public static int getWorkDayCD() {
+        return workDayCD;
+    }
+
     public static double getFairCoef() {
         switch (builds.getBuilding(Builds.BuildingType.FAIR).getLevel()) {
             case 1:
@@ -51,6 +57,16 @@ public class GameRules {
     public static double getCoefLoyal(boolean good) {
         if (good) return 1.0/2;
         return -1.0/2;
+    }
+
+    public static int getloyalty() {
+        if (workDay) return 100;
+        return  50 + builds.getBuilding(Builds.BuildingType.THEATRE).getLevel() * 15;
+    }
+
+    public static void activateWorkDay() {
+        workDay = true;
+        workDayCD = 3;
     }
 
     enum Difficulty {
@@ -112,6 +128,7 @@ public class GameRules {
 
 
     public static void makeTurn() {
+        workDayCD-=1;
         for (Resource.ResourceType type : Resource.ResourceType.values()) {
             if (type.ordinal() < 4)
                 resource.getItem(type).calculateTotal();
