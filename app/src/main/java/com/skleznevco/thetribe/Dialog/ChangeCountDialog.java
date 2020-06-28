@@ -56,7 +56,7 @@ private void initialView(){
                 target.setText("0".concat(count));
             }
             else target.setText(count);
-            if (position==0){
+            if (position==-1){
                 resourceInterface.setMilitary(Integer.parseInt(count));
                 resourceInterface.update();
             }

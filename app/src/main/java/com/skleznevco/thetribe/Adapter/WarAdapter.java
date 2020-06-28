@@ -8,18 +8,20 @@ import android.widget.BaseAdapter;
 
 import com.skleznevco.thetribe.R;
 
-public class TribeAdapter extends BaseAdapter {
+public class WarAdapter extends BaseAdapter {
     Context context;
     LayoutInflater lInflater;
+    private int turn;
 
-    public TribeAdapter(Context context){
+    public WarAdapter(Context context){
         this.context = context;
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        turn = 0;
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return 40;
     }
 
     @Override
@@ -36,8 +38,12 @@ public class TribeAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
-            view = lInflater.inflate(R.layout.list_items_tribe, parent, false);
+            view = lInflater.inflate(R.layout.war_items, parent, false);
         }
         return view;
+    }
+
+    public void addTurn(){
+
     }
 }

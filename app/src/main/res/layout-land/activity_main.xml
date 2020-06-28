@@ -74,12 +74,12 @@
 
         </GridView>
 
-        <ListView
-            android:id="@+id/list_tribes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="10dp" />
+        <GridView
+            android:id="@+id/grid_war"
+            android:layout_width="375dp"
+            android:layout_height="200dp">
+
+        </GridView>
     </LinearLayout>
 
 </LinearLayout>

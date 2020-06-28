@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.skleznevco.thetribe.Adapter.BuildAdapter;
 import com.skleznevco.thetribe.Adapter.ResourceAdapter;
-import com.skleznevco.thetribe.Adapter.TribeAdapter;
+import com.skleznevco.thetribe.Adapter.WarAdapter;
 import com.skleznevco.thetribe.Adapter.WorkAdapter;
 import com.skleznevco.thetribe.Dialog.ChangeCountDialog;
 
@@ -25,7 +25,7 @@ public class GameActivity extends AppCompatActivity {
     private ResourceAdapter resourceAdapter;
     private WorkAdapter workAdapter;
     private BuildAdapter buildAdapter;
-    private TribeAdapter tribeAdapter;
+    private WarAdapter warAdapter;
     private ResourceInterface resourceInterface;
     private ProgressBar progressBar;
     private Context context;
@@ -70,7 +70,7 @@ public class GameActivity extends AppCompatActivity {
         gameRules = new GameRules(gameDifficulty, resourceInterface);
         resourceAdapter = new ResourceAdapter(this);
         workAdapter = new WorkAdapter(this, resourceInterface);
-        tribeAdapter = new TribeAdapter(this);
+        warAdapter = new WarAdapter(this);
         buildAdapter = new BuildAdapter(this);
         ListView listView = this.findViewById(R.id.list_resources);
         listView.setAdapter(resourceAdapter);
@@ -79,8 +79,9 @@ public class GameActivity extends AppCompatActivity {
         gridWork.setAdapter(workAdapter);
         gridWork.setNumColumns(workAdapter.getCount());
 
-        ListView tribe = this.findViewById(R.id.list_tribes);
-        tribe.setAdapter(tribeAdapter);
+        GridView gridWar = this.findViewById(R.id.grid_war);
+        gridWar.setAdapter(warAdapter);
+        gridWar.setNumColumns(8);
 
         GridView gridBuilds = this.findViewById(R.id.grid_builds);
         gridBuilds.setAdapter(buildAdapter);
@@ -112,7 +113,7 @@ public class GameActivity extends AppCompatActivity {
         shield.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface,shield,0);
+                ChangeCountDialog changeCountDialog = new ChangeCountDialog(context, resourceInterface,shield,-1);
                 changeCountDialog.setMaxSeek(String.valueOf(Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).getTotal())));
                 changeCountDialog.setCurrentCount(Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).getBusy()));
                 changeCountDialog.show();
