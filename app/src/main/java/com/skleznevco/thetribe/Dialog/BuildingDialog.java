@@ -27,6 +27,8 @@ import com.skleznevco.thetribe.GameRules;
 import com.skleznevco.thetribe.R;
 import com.skleznevco.thetribe.Resource;
 
+import java.util.Random;
+
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 import static com.skleznevco.thetribe.Resource.ResourceType.FOOD;
 import static com.skleznevco.thetribe.Resource.ResourceType.GOLD;
@@ -53,10 +55,13 @@ public class BuildingDialog extends Dialog {
 
         Button button = layout.findViewById(R.id.upgrade);
 
-        if (GameRules.canPay(building.getCostUpgrade(building.getLevel())) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
+        if (GameRules.canPay(building.getCostUpgrade(building.getLevel())) && (building.getLevel()!=3) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
             button.setBackgroundColor(Color.parseColor("#117864"));
+            button.setEnabled(true);
+
         } else {
             button.setBackgroundColor(Color.parseColor("#D72323"));
+            button.setEnabled(false);
         }
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +83,9 @@ public class BuildingDialog extends Dialog {
 
         if(building.getLevel() == 0){
             level.setText("Здание не построенно");
+        }
+        else if(building.getLevel() == 3){
+            level.setText("Максимальный уровень");
         }
         else {
             level.setText("Уровень " + building.getLevel());
@@ -222,6 +230,18 @@ public class BuildingDialog extends Dialog {
             case TOWER:
                 description.setText(context.getString(R.string.description_tower));
                 buildLayout.addView(factory.inflate(R.layout.tower_layout, null));
+                final TextView TR_text = buildLayout.findViewById(R.id.TR_text);
+                Button TR_button = buildLayout.findViewById(R.id.TR_button);
+                final Random random = new Random();
+                if (building.getLevel()==0) TR_text.setVisibility(View.GONE);
+                if (building.getLevel()>=1) TR_text.setText("Количество нападающих не больше чем " + (random.nextInt(5)+GameRules.getCountEnemyNext()));
+                if (building.getLevel()==2) TR_button.setEnabled(true);
+                TR_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        TR_text.setText("Количество нападающих: " + GameRules.getCountEnemyNext());
+                    }
+                });
                 break;
             case CHURCH:
                 description.setText(context.getString(R.string.description_church));

@@ -82,8 +82,6 @@ public class ChanceDialog extends DialogFragment {
             eventMessage += "\nВы потерпели поражение!";
             eventMessage += "\nВаши потери составляют " + GameRules.delta + " поселенцев";
         }
-
-
         return builder.setTitle("Отчет по оканчанию хода").setMessage(eventMessage).create();
     }
 

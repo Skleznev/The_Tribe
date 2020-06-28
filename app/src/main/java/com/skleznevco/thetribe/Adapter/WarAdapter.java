@@ -46,15 +46,19 @@ public class WarAdapter extends BaseAdapter {
         TextView textCount = view.findViewById(R.id.war_count);
         TextView textColor = view.findViewById(R.id.war_color);
 
-        if (position == turn) {
-            if(GameRules.isVision()) textCount.setVisibility(View.VISIBLE);
+        if (position + 1 == turn) {
 
             textCount.setText(String.valueOf(GameRules.getCountEnemy()));
-        }
-        if (position+1 == turn) {
             textCount.setVisibility(View.VISIBLE);
             if(!GameRules.isWinBattle()) textColor.setBackgroundColor(Color.parseColor("#D72323"));
             textColor.setVisibility(View.VISIBLE);
+        }
+
+        if (position == turn && GameRules.isVision()) {
+
+            textCount.setText(String.valueOf(GameRules.getCountEnemyNext()));
+            textCount.setVisibility(View.VISIBLE);
+
         }
 
 

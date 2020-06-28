@@ -51,6 +51,7 @@ public class GameActivity extends AppCompatActivity {
             public void update() {
                 resourceAdapter.update();
                 buildAdapter.notifyDataSetChanged();
+                warAdapter.notifyDataSetChanged();
                 workAdapter.update();
 
             }

@@ -17,6 +17,7 @@ public class GameRules {
     static int prisonerTurn;
     static Resource.ResourceType powerType;
     static int countEnemy;
+    static int countEnemyNext;
     static int prisonerCount;
     static boolean winBattle;
 
@@ -25,6 +26,8 @@ public class GameRules {
         this.resourceInterface = resourceInterface;
         this.gameDifficulty = gameDifficulty;
         this.eventChance = 50;
+        countEnemy=0;
+        countEnemyNext=generateCountEnemy(turn);
         resource = new Resource(getGameDifficulty());
         builds = new Builds(getGameDifficulty());
 
@@ -34,6 +37,14 @@ public class GameRules {
                 resource.getItem(type).setNegative(calculateNegative(type));
             }
         }
+    }
+
+    public static int getCountEnemyNext() {
+        return countEnemyNext;
+    }
+
+    private static int generateCountEnemy(int turn) {
+        return (int) ((new Random().nextInt(50)+50)*0.01 * turn);
     }
 
     public static void pay(Payment payment) {
@@ -79,11 +90,7 @@ public class GameRules {
         workDay = true;
         workDayCD = 3;
     }
-
-    public static void newCountEnemy() {
-        countEnemy = (int) ((new Random().nextInt(50)+50)*0.01 * turn);
-    }
-    public static int getCountEnemy() {
+        public static int getCountEnemy() {
         return countEnemy;
     }
 
@@ -227,11 +234,13 @@ public class GameRules {
             }
         }
         calculateBattle();
-        newCountEnemy();
+        countEnemy = countEnemyNext;
+        countEnemyNext = generateCountEnemy(turn);
+        workDay = false;
     }
 
     private static void calculateBattle() {
-        delta = Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getBusy())-countEnemy;
+        delta = Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getBusy())-countEnemyNext;
         if (delta >= 0) {
             double coef = 0;
             if (builds.getBuilding(Builds.BuildingType.JAIL).getLevel()==0) coef=0;
@@ -261,6 +270,7 @@ public class GameRules {
             }
             winBattle=false;
         }
+        resourceInterface.update();
     }
 
     public static boolean isWinBattle() {
