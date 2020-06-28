@@ -1,5 +1,8 @@
 package com.skleznevco.thetribe;
 
+import com.skleznevco.thetribe.Models.Human;
+import com.skleznevco.thetribe.Models.Item;
+
 public class Resource {
 
 

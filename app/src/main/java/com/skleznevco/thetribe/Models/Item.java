@@ -1,4 +1,4 @@
-package com.skleznevco.thetribe;
+package com.skleznevco.thetribe.Models;
 
 public class Item {
     private int positive;
@@ -6,7 +6,7 @@ public class Item {
     private int total;
     private int countWorkers;
 
-    Item(int total) {
+    public Item(int total) {
         this.total = total;
     }
 

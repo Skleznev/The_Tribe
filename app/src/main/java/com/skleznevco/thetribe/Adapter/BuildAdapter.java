@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.skleznevco.thetribe.Building;
+import com.skleznevco.thetribe.Models.Building;
 import com.skleznevco.thetribe.Builds;
 import com.skleznevco.thetribe.Dialog.BuildingDialog;
 import com.skleznevco.thetribe.GameRules;

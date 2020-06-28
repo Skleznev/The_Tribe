@@ -9,8 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.skleznevco.thetribe.GameRules;
-import com.skleznevco.thetribe.Human;
-import com.skleznevco.thetribe.Item;
+import com.skleznevco.thetribe.Models.Human;
+import com.skleznevco.thetribe.Models.Item;
 import com.skleznevco.thetribe.R;
 import com.skleznevco.thetribe.Resource;
 

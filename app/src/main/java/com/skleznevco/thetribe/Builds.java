@@ -1,5 +1,7 @@
 package com.skleznevco.thetribe;
 
+import com.skleznevco.thetribe.Models.Building;
+
 public class Builds {
     public enum BuildingType {
         TOWN_HALL,

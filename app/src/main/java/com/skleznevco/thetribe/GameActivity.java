@@ -16,6 +16,7 @@ import com.skleznevco.thetribe.Adapter.BuildAdapter;
 import com.skleznevco.thetribe.Adapter.ResourceAdapter;
 import com.skleznevco.thetribe.Adapter.WarAdapter;
 import com.skleznevco.thetribe.Adapter.WorkAdapter;
+import com.skleznevco.thetribe.Dialog.ChanceDialog;
 import com.skleznevco.thetribe.Dialog.ChangeCountDialog;
 
 import java.util.Objects;

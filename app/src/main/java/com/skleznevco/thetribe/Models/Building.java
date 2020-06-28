@@ -1,4 +1,8 @@
-package com.skleznevco.thetribe;
+package com.skleznevco.thetribe.Models;
+
+import com.skleznevco.thetribe.Builds;
+import com.skleznevco.thetribe.GameRules;
+import com.skleznevco.thetribe.R;
 
 import java.util.Random;
 
@@ -9,7 +13,7 @@ public class Building {
     private String name;
     private int img;
 
-    Building(int level, boolean random, Builds.BuildingType type) {
+    public Building(int level, boolean random, Builds.BuildingType type) {
         this.level = level;
         createBuilding(type);
         if (random) {

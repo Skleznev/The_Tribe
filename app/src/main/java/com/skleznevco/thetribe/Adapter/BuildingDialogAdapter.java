@@ -10,10 +10,10 @@ import android.view.ViewManager;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.skleznevco.thetribe.Building;
+import com.skleznevco.thetribe.Models.Building;
 import com.skleznevco.thetribe.Builds;
 import com.skleznevco.thetribe.GameRules;
-import com.skleznevco.thetribe.Item;
+import com.skleznevco.thetribe.Models.Item;
 import com.skleznevco.thetribe.R;
 import com.skleznevco.thetribe.Resource;
 

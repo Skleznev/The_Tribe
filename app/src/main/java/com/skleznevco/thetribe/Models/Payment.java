@@ -1,6 +1,8 @@
-package com.skleznevco.thetribe;
+package com.skleznevco.thetribe.Models;
 
 import androidx.annotation.NonNull;
+
+import com.skleznevco.thetribe.Resource;
 
 public class Payment {
     private int food;
@@ -8,7 +10,7 @@ public class Payment {
     private int wood;
     private int gold;
 
-    Payment(int food, int stone, int wood, int gold) {
+    public Payment(int food, int stone, int wood, int gold) {
         this.food = food;
         this.stone = stone;
         this.wood = wood;

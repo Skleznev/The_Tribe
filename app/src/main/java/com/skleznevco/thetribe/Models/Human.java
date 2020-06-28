@@ -1,4 +1,4 @@
-package com.skleznevco.thetribe;
+package com.skleznevco.thetribe.Models;
 
 public class Human {
     private int busy;

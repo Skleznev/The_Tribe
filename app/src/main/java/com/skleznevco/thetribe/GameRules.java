@@ -1,6 +1,6 @@
 package com.skleznevco.thetribe;
 
-import android.widget.Toast;
+import com.skleznevco.thetribe.Models.Payment;
 
 import java.util.Random;
 
@@ -13,8 +13,8 @@ public class GameRules {
     static ResourceInterface resourceInterface;
     static int eventChance;
     static int turn;
-    static int delta;
-    static int prisonerTurn;
+    static public int delta;
+    static public int prisonerTurn;
     static Resource.ResourceType powerType;
     static int countEnemy;
     static int countEnemyNext;
