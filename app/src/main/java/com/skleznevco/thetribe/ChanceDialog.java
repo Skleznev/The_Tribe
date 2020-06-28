@@ -18,7 +18,7 @@ public class ChanceDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        if (random.nextInt(100) + 1 < GameRules.getLuckyChance() * 100) {
+        if (random.nextInt(101) < GameRules.getLuckyChance()) {
             switch (random.nextInt(6)) {
                 case 0:
                     eventMessage = "Поселенцы вашего племени нашли клад";

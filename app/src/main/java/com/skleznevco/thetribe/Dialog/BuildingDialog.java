@@ -51,7 +51,7 @@ public class BuildingDialog extends Dialog {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (GameRules.canPay(building.getCostUpgrade(building.getLevel())) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
+                if (GameRules.canPay(building.getCostUpgrade(building.getLevel()+1)) && (building.getLevel() < GameRules.getBuilds().getBuilding(Builds.BuildingType.TOWN_HALL).getLevel() || building.getName().equals("Ратуша"))) {
                     building.levelUp();
                     GameRules.updateResourse();
                     cancel();
@@ -137,6 +137,8 @@ public class BuildingDialog extends Dialog {
                 break;
             case CHURCH:
                 buildLayout.addView(factory.inflate(R.layout.church_layout, null));
+                TextView luckyText = buildLayout.findViewById(R.id.luckyText);
+                luckyText.setText("Текущий множитель удачи: " + GameRules.getLuckyChance() + "%");
                 break;
             case THEATRE:
                 buildLayout.addView(factory.inflate(R.layout.theatre_layout, null));
