@@ -55,13 +55,13 @@ public class GameRules {
     }
 
     public static double getCoefLoyal(boolean good) {
-        if (good) return 1.0/2;
-        return -1.0/2;
+        if (good) return resourceInterface.getLoyalty();
+        return -1.0+resourceInterface.getLoyalty();
     }
 
-    public static int getloyalty() {
+    public static double getloyalty() {
         if (workDay) return 100;
-        return  50 + builds.getBuilding(Builds.BuildingType.THEATRE).getLevel() * 15;
+        return  70 + builds.getBuilding(Builds.BuildingType.THEATRE).getLevel() * 10;
     }
 
     public static void activateWorkDay() {
@@ -143,7 +143,7 @@ public class GameRules {
     }
 
     public static void addHuman(Resource.ResourceType type, int count) {
-        Payment cost = new Payment(0,0,0,count*20);
+        Payment cost = new Payment(0,0,0,count*50);
         if (canPay(cost)) {
             pay(cost);
             resource.getHuman(type).addFree(count);

@@ -2,7 +2,12 @@ package com.skleznevco.thetribe;
 
 public class Resource {
 
-   public enum ResourceType{
+
+    public double getBusyPopulation() {
+        return Double.parseDouble(workers.getBusy())+Integer.parseInt(military.getBusy());
+    }
+
+    public enum ResourceType{
         FOOD,STONE,WOOD,GOLD, WORKERS,MILITARY
     }
 

@@ -146,7 +146,7 @@ public class BuildingDialog extends Dialog {
                 loyaltyText.setText("Текущий множитель лояльности: " + GameRules.getloyalty() + "%");
 
                 Button workButton= buildLayout.findViewById(R.id.workButton);
-                if(building.getLevel()==3&&GameRules.getWorkDayCD()<1){
+                if(building.getLevel()>1&&GameRules.getWorkDayCD()<1){
                     workButton.setBackgroundColor(Color.parseColor("#117864"));
                     workButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -196,7 +196,7 @@ public class BuildingDialog extends Dialog {
                 Button TH_button = buildLayout.findViewById(R.id.TH_button);
                 SeekBar TH_seekbar = buildLayout.findViewById(R.id.TH_seekbar);
                 TH_seekbar.setMax((GameRules.getResource().getItem(Resource.ResourceType.GOLD)
-                        .getTotalInt() - Integer.parseInt(GameRules.getResource().getItem(Resource.ResourceType.GOLD).getNegative())) / 20);
+                        .getTotalInt() - Integer.parseInt(GameRules.getResource().getItem(Resource.ResourceType.GOLD).getNegative())) / 50);
                 TH_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

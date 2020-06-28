@@ -8,4 +8,6 @@ public interface ResourceInterface {
 
     void setMilitary(int count);
 
+    double getLoyalty();
+
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     private BuildAdapter buildAdapter;
     private TribeAdapter tribeAdapter;
     private ResourceInterface resourceInterface;
+    private ProgressBar progressBar;
     private Context context;
 
     private GameRules.Difficulty gameDifficulty;
@@ -59,6 +61,11 @@ public class GameActivity extends AppCompatActivity {
             public void setMilitary(int count) {
                 GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).addBusy(count - Integer.parseInt(GameRules.getResource().getHuman(Resource.ResourceType.MILITARY).getBusy()));
             }
+
+            @Override
+            public double getLoyalty() {
+                return progressBar.getProgress()*0.01;
+            }
         };
         gameRules = new GameRules(gameDifficulty, resourceInterface);
         resourceAdapter = new ResourceAdapter(this);
@@ -79,12 +86,20 @@ public class GameActivity extends AppCompatActivity {
         gridBuilds.setAdapter(buildAdapter);
         gridBuilds.setNumColumns(4);
 
+        progressBar = this.findViewById(R.id.progressBar);
+
         Button button_turn = findViewById(R.id.turn);
         button_turn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                if (GameRules.getResource().getBusyPopulation()/GameRules.getResource().getPopulation()<=GameRules.getloyalty()/100){
+                    progressBar.setProgress(progressBar.getProgress()+10);
+                }
+                else progressBar.setProgress(progressBar.getProgress()-10);
+
                 GameRules.makeTurn();
+
 
 
                 ChanceDialog dialog = new ChanceDialog();
