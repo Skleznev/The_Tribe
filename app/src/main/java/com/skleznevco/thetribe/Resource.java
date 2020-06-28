@@ -24,26 +24,26 @@ public class Resource {
     public Resource(GameRules.Difficulty difficulty) {
         switch (difficulty) {
             case EASY:
-                food = new Item(4000);
-                stone = new Item(1000);
-                wood = new Item(1000);
-                gold = new Item(2000);
+                food = new Item(400);
+                stone = new Item(100);
+                wood = new Item(100);
+                gold = new Item(200);
                 workers = new Human(10);
                 military = new Human(5);
                 break;
             case MEDIUM:
                 food = new Item(200);
-                stone = new Item(0);
-                wood = new Item(0);
+                stone = new Item(50);
+                wood = new Item(50);
                 gold = new Item(100);
                 workers = new Human(5);
                 military = new Human(0);
                 break;
             case HARD:
                 food = new Item(100);
-                stone = new Item(0);
-                wood = new Item(0);
-                gold = new Item(0);
+                stone = new Item(50);
+                wood = new Item(50);
+                gold = new Item(50);
                 workers = new Human(2);
                 military = new Human(0);
                 break;
