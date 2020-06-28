@@ -108,11 +108,6 @@ public class GameRules {
         return true;
     }
 
-    public void setGameDifficulty(Difficulty gameDifficulty) {
-        this.gameDifficulty = gameDifficulty;
-
-    }
-
     public Difficulty getGameDifficulty() {
         return gameDifficulty;
     }
@@ -142,15 +137,29 @@ public class GameRules {
         switch (type) {
             case FOOD: {
                 int coef = 20;
-                return coef * resource.getPopulation();
+                return coef * resource.getPopulation() + calculateService(type);
             }
             case GOLD: {
                 int coef = 20;
-                return coef * Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal());
+                return coef * Integer.parseInt(resource.getHuman(Resource.ResourceType.MILITARY).getTotal()) + calculateService(type);
+            }
+            case STONE: {
+                return calculateService(type);
+            }
+            case WOOD: {
+                return calculateService(type);
             }
         }
         return 0;
 
+    }
+
+    private static int calculateService(Resource.ResourceType type) {
+        int cost = 0;
+        for (Builds.BuildingType buildingType : Builds.BuildingType.values()) {
+            cost += builds.getBuilding(buildingType).getCostService().getItemCount(type);
+        }
+        return cost;
     }
 
 

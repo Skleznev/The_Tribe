@@ -13,7 +13,7 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/food_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -21,7 +21,7 @@
             android:theme="@style/MyRadioButton" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/stone_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -30,7 +30,7 @@
 
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/wood_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -38,7 +38,7 @@
             android:theme="@style/MyRadioButton" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/gold_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Золото"
@@ -47,7 +47,7 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/power_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
